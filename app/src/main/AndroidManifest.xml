@@ -25,6 +25,10 @@
         <activity
             android:name=".LumensActivity"
             android:label="@string/title_activity_lumens"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LumensandDecibelsActivity"
+            android:label="@string/title_activity_lumensand_decibels"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

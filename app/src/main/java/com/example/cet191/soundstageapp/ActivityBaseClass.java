@@ -27,10 +27,19 @@ public class ActivityBaseClass extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.display_decibles) {
+        if (id == R.id.display_decibels) {
             Intent i = new Intent(this, DecibelsActivity.class);
             startActivity(i);
         }
+        if(id == R.id.display_lumens){
+            Intent i = new Intent(this, LumensActivity.class);
+            startActivity(i);
+        }
+        if(id == R.id.display_lumensanddecibels){
+            Intent i = new Intent(this, LumensandDecibelsActivity.class);
+            startActivity(i);
+        }
+
         else if(id == R.id.display_main)
         {
             Intent i = new Intent(this, MainActivity.class);

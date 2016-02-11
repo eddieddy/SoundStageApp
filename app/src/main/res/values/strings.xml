@@ -4,4 +4,5 @@
     <string name="title_activity_main">Home</string>
     <string name="title_activity_decibels">Decibels</string>
     <string name="title_activity_lumens">LumensActivity</string>
+    <string name="title_activity_lumensand_decibels">Lumens and Decibels</string>
 </resources>
