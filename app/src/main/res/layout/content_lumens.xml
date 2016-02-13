@@ -20,7 +20,11 @@
         android:text="Lumens"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89dp"
+        android:textColor="#ffffff"
+        android:shadowColor="#000000"
+        android:soundEffectsEnabled="true" />
 
     <ImageView
         android:layout_width="wrap_content"
