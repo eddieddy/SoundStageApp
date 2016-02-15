@@ -29,4 +29,10 @@ public class MainActivity extends ActivityBaseClass {
             }
         });
     }
+
+    public void onDisplayLumensClick(View v)
+    {
+        Intent i = new Intent(this, LumensActivity.class);
+        startActivity(i);
+    }
 }
