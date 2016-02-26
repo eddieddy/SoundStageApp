@@ -68,7 +68,7 @@
         android:id="@+id/toggleButtonDecibel"
         android:checked="false"
         android:layout_marginTop="29dp"
-        android:layout_below="@+id/textView6"
+        android:layout_below="@+id/decibelAvg"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/textView6"
+        android:id="@+id/decibelAvg"
         android:textColor="#000000"
         android:background="#ffffff"
         android:text="                     "
@@ -105,7 +105,7 @@
         android:textColor="#000000"
         android:background="#ffffff"
         android:text="                     "
-        android:layout_alignTop="@+id/textView6"
+        android:layout_alignTop="@+id/decibelAvg"
         android:layout_alignLeft="@+id/textView4"
         android:layout_alignStart="@+id/textView4" />
 
