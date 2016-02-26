@@ -8,23 +8,21 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@android:color/black"
+    android:background="@color/background"
     android:textColor="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.cet191.soundstageapp.DecibelsActivity"
     tools:showIn="@layout/activity_decibels"
-    android:backgroundTint="#000000"
     android:foregroundTint="@color/black">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="#ca9c9c"
+        android:background="@color/background"
         android:textColor="#e0e0e0"
         android:text="White backgrounds hurt my eyes"
         android:id="@+id/textView"
-        android:backgroundTint="#000000"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 

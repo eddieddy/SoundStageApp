@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.cet191.soundstageapp.LumensActivity"
     tools:showIn="@layout/activity_lumens"
-    android:background="#41aeed">
+    android:background="@color/background">
 
     <TextView
         android:layout_width="wrap_content"
