@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 public class DecibelsActivity extends ActivityBaseClass {
 
@@ -20,5 +21,24 @@ public class DecibelsActivity extends ActivityBaseClass {
         // Code added to add the menu.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        addListenerOnButton();
+    }
+
+    public void addListenerOnButton() {
+
+        ImageButton mainButton = (ImageButton) findViewById(R.id.imageButton3);
+
+        mainButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(intent, 0);
+            }
+
+        });
+
     }
 }
