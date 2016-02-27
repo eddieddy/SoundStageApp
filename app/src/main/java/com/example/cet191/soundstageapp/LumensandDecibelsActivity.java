@@ -72,4 +72,5 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         String currentReading = String.format("%.2f", decibelReader.getAmplitudeEMA());
         decibelAvg.setText(currentReading);
     }
+//
 }

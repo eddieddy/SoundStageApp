@@ -5,6 +5,10 @@ import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 
 public class DecibelsActivity extends ActivityBaseClass {
@@ -73,5 +77,24 @@ public class DecibelsActivity extends ActivityBaseClass {
     {
         String currentReading = String.format("%.2f", decibelReader.getAmplitudeEMA());
         decibelAvg.setText(currentReading);
+
+        addListenerOnButton();
+    }
+
+    public void addListenerOnButton() {
+
+        ImageButton mainButton = (ImageButton) findViewById(R.id.imageButton3);
+
+        mainButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(intent, 0);
+            }
+
+        });
+
     }
 }
