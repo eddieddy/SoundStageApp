@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MainActivity extends ActivityBaseClass {
 //hello
@@ -28,5 +30,40 @@ public class MainActivity extends ActivityBaseClass {
                         .setAction("Action", null).show();
             }
         });
+        addListenerOnButton();
+    }
+
+    public void addListenerOnButton() {
+
+        ImageButton decibelButton = (ImageButton) findViewById(R.id.imageButton2);
+        ImageButton luminsButton = (ImageButton) findViewById(R.id.imageButton);
+
+        luminsButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent (v.getContext(), LumensActivity.class);
+                startActivityForResult(intent, 0);
+            }
+
+        });
+
+        decibelButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                //testing the button
+                /*Toast.makeText(MainActivity.this,
+                        "Decibel Button is clicked!", Toast.LENGTH_SHORT).show();*/
+
+                Intent intent = new Intent (v.getContext(), DecibelsActivity.class);
+                startActivityForResult(intent, 0);
+
+            }
+
+        });
+
     }
 }
