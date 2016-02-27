@@ -24,29 +24,10 @@ public class LumensActivity extends LumensActivityBase {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
+
     public void addListenerOnButton() {
-
-    public void onSensorChanged(SensorEvent event) {
-        // TODO Auto-generated method stub
-        if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
-            final float currentReading = event.values[0];
-
-            int reading = (int) currentReading;
-
-
-          //  addLightReading(reading);
-        }
-    }
-        ImageButton mainButton = (ImageButton) findViewById(R.id.imageButton4);
+        ImageButton mainButton = (ImageButton) findViewById(R.id.imageButton3);
 
         mainButton.setOnClickListener(new View.OnClickListener() {
 
@@ -58,6 +39,25 @@ public class LumensActivity extends LumensActivityBase {
             }
 
         });
+    }
 
+    public void onSensorChanged(SensorEvent event) {
+        // TODO Auto-generated method stub
+        if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
+            final float currentReading = event.values[0];
+
+            int reading = (int) currentReading;
+
+
+            //addLightReading(reading);
+        }
+    }
+
+    public void onClick(View v) {
+
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
+        startActivityForResult(intent, 0);
     }
 }
+
+
