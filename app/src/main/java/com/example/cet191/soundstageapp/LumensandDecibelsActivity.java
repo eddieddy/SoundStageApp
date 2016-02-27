@@ -25,5 +25,5 @@ public class LumensandDecibelsActivity extends ActivityBaseClass {
             }
         });
     }
-
+//
 }
