@@ -84,7 +84,7 @@ public class DecibelsActivity extends ActivityBaseClass {
 
     public void addListenerOnButton() {
 
-        ImageButton mainButton = (ImageButton) findViewById(R.id.imageButton3);
+        ImageButton mainButton = (ImageButton) findViewById(R.id.imgBtnGoToMainFromDecActivity);
 
         mainButton.setOnClickListener(new View.OnClickListener() {
 

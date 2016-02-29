@@ -37,6 +37,7 @@ public class MainActivity extends ActivityBaseClass {
 
         ImageButton decibelButton = (ImageButton) findViewById(R.id.imageButton2);
         ImageButton luminsButton = (ImageButton) findViewById(R.id.imageButton);
+        ImageButton decLumButton = (ImageButton)findViewById(R.id.imgBtnLumAndDec);
 
         luminsButton.setOnClickListener(new View.OnClickListener() {
 
@@ -49,22 +50,25 @@ public class MainActivity extends ActivityBaseClass {
 
         });
 
-        decibelButton.setOnClickListener(new View.OnClickListener() {
+       decibelButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                //testing the button
-                /*Toast.makeText(MainActivity.this,
-                        "Decibel Button is clicked!", Toast.LENGTH_SHORT).show();*/
-
                 Intent intent = new Intent (v.getContext(), DecibelsActivity.class);
                 startActivityForResult(intent, 0);
-
             }
 
         });
 
+        decLumButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), LumensandDecibelsActivity.class);
+                startActivityForResult(intent, 0);
+            }
+
+        });
     }
 
     public void onDisplayLumensClick(View v)

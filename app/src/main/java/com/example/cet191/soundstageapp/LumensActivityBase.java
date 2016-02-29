@@ -101,10 +101,21 @@ public class LumensActivityBase extends ActivityBaseClass {
             if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
                 final float currentReading = event.values[0];
 
+                // Get our reading and add it to the list.
                 int reading = (int) currentReading;
-                TextView txtView = (TextView) findViewById(R.id.lumensMin);
-                txtView.setText(Integer.toString(reading));
                 addLightReading(reading);
+
+                // set the avg reading.
+                TextView min = (TextView) findViewById(R.id.txtLumensMin);
+                min.setText(Integer.toString(getMinLightReading()));
+
+                // set the min reading.
+                TextView avg = (TextView) findViewById(R.id.txtLumensAvg);
+                avg.setText(Integer.toString(getAverageLightReading()));
+
+                // set the max reading.
+                TextView max = (TextView) findViewById(R.id.txtLumensMax);
+                max.setText(Integer.toString(getMaxLightReading()));
             }
         }
     };

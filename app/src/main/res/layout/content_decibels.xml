@@ -12,9 +12,7 @@
     android:textColor="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.cet191.soundstageapp.DecibelsActivity"
-    tools:showIn="@layout/activity_decibels"
-    android:backgroundTint="#000000"
-    android:foregroundTint="@color/black">
+    tools:showIn="@layout/activity_decibels">
 
     <TextView
         android:layout_width="wrap_content"
@@ -129,7 +127,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton3"
+        android:id="@+id/imgBtnGoToMainFromDecActivity"
         android:src="@drawable/main"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/textView7"
