@@ -1,6 +1,7 @@
 package com.example.cet191.soundstageapp;
 
 import android.media.MediaRecorder;
+
 import java.io.IOException;
 
 /**
@@ -13,8 +14,11 @@ public class DecibelReader {
     private MediaRecorder mRecorder = null;
     private double mEMA = 0.0;
 
-    public DecibelReader()
-    {
+    public boolean isRunning (){
+        return mRecorder != null;
+    }
+
+    public DecibelReader() {
 
     }
 
@@ -52,11 +56,11 @@ public class DecibelReader {
     }
 
     public double getAmplitude() {
-        if (mRecorder != null)
-            return  (mRecorder.getMaxAmplitude()/2700.0);
-        else
+        if (mRecorder != null) {
+            return (mRecorder.getMaxAmplitude() / 2700.0);
+        } else {
             return 0;
-
+        }
     }
 
     public double getAmplitudeEMA() {

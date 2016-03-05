@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ import java.util.List;
  */
 public class LumensActivityBase extends ActivityBaseClass {
     private List<Integer> _lightReadings;
+    SensorManager sensorManager;
+    Sensor lightSensor;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -65,11 +68,19 @@ public class LumensActivityBase extends ActivityBaseClass {
         super.onCreate(savedInstanceState);
         _lightReadings = new ArrayList<Integer>();
 
-        SensorManager sensorManager
+        sensorManager
                 = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        Sensor lightSensor
+        lightSensor
                 = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void startLightSensorReading()
+    {
         if (lightSensor == null) {
             Toast.makeText(this,
                     "No Light Sensor detected on your device!",
@@ -79,11 +90,16 @@ public class LumensActivityBase extends ActivityBaseClass {
 
             sensorManager.registerListener(lightSensorEventListener,
                     lightSensor,
-                    SensorManager.SENSOR_DELAY_NORMAL);
+                    SensorManager.SENSOR_DELAY_UI);
         }
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void stopLightSensor()
+    {
+        if(sensorManager != null && lightSensor != null)
+        {
+            sensorManager.unregisterListener(lightSensorEventListener, lightSensor);
+        }
     }
 
     SensorEventListener lightSensorEventListener
@@ -107,15 +123,22 @@ public class LumensActivityBase extends ActivityBaseClass {
 
                 // set the avg reading.
                 TextView min = (TextView) findViewById(R.id.txtLumensMin);
-                min.setText(Integer.toString(getMinLightReading()));
+                String minValue = Integer.toString(getMinLightReading());
+                min.setText(minValue);
 
                 // set the min reading.
                 TextView avg = (TextView) findViewById(R.id.txtLumensAvg);
-                avg.setText(Integer.toString(getAverageLightReading()));
+                String avgValue = Integer.toString(getAverageLightReading());
+                avg.setText(avgValue);
 
                 // set the max reading.
                 TextView max = (TextView) findViewById(R.id.txtLumensMax);
-                max.setText(Integer.toString(getMaxLightReading()));
+                String maxValue = Integer.toString(getMaxLightReading());
+                max.setText(maxValue);
+
+                if (BuildConfig.DEBUG) {
+                    Log.d(getLocalClassName(), String.format("Light readings: current: %s, min: %s, max: %s, avg: %s", currentReading, minValue, maxValue, avgValue));
+                }
             }
         }
     };
@@ -123,6 +146,8 @@ public class LumensActivityBase extends ActivityBaseClass {
     @Override
     protected void onStart() {
         super.onStart();
+
+        startLightSensorReading();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -143,6 +168,8 @@ public class LumensActivityBase extends ActivityBaseClass {
     @Override
     protected void onStop() {
         super.onStop();
+
+        stopLightSensor();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.

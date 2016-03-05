@@ -1,5 +1,6 @@
 package com.example.cet191.soundstageapp;
 
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
@@ -10,15 +11,16 @@ import android.widget.TextView;
 
 public class LumensandDecibelsActivity extends LumensActivityBase {
     Thread runner;
+    boolean runRunner;
     DecibelReader decibelReader = new DecibelReader();
     TextView decibelAvg;
 
-    final Runnable updater = new Runnable(){
-
-        public void run(){
+    final Runnable updater = new Runnable() {
+        public void run() {
             updateView();
-        };
+        }
     };
+
     final Handler mHandler = new Handler();
 
 
@@ -26,8 +28,6 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lumensand_decibels);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         ImageButton btnMain = (ImageButton)findViewById(R.id.imgBtnGoToMainFromDecActivity);
         btnMain.setVisibility(View.INVISIBLE);
@@ -39,14 +39,16 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         } catch (Exception ex) {
             System.out.println(ex.getStackTrace());
         }
+    }
 
+    private void startRunner() {
+        runRunner = true;
         if (runner == null) {
             runner = new Thread() {
                 public void run() {
-                    while (runner != null) {
+                    while (runner != null && runRunner) {
                         try {
-                            Thread.sleep(1000);
-                            Log.i("Noise", "Tock");
+                            Thread.sleep(250);
                         } catch (InterruptedException e) {
                         }
                         ;
@@ -58,17 +60,23 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         }
     }
 
+    private void stopRunner() {
+        runRunner = false;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
 
         decibelReader.start();
+        startRunner();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
+        stopRunner();
         decibelReader.stop();
     }
 
@@ -76,6 +84,8 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
     {
         String currentReading = String.format("%.2f", decibelReader.getAmplitudeEMA());
         decibelAvg.setText(currentReading);
+        if (BuildConfig.DEBUG) {
+            Log.d(this.getLocalClassName(), "Decibels read: " + currentReading);
+        }
     }
-//
 }
