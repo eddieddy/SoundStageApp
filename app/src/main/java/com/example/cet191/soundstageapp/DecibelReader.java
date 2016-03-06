@@ -1,5 +1,6 @@
 package com.example.cet191.soundstageapp;
 
+import android.graphics.Canvas;
 import android.media.MediaRecorder;
 
 import java.io.IOException;
@@ -68,4 +69,6 @@ public class DecibelReader {
         mEMA = EMA_FILTER * amp + (1.0 - EMA_FILTER) * mEMA;
         return mEMA;
     }
+
+
 }
