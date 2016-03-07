@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Config;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,6 +95,8 @@ public class DecibelsActivity extends ActivityBaseClass {
     public void addListenerOnButton() {
 
         ImageButton mainButton = (ImageButton) findViewById(R.id.imgBtnGoToMainFromDecActivity);
+        Button decibelResest = (Button) findViewById(R.id.decibelResest);
+
 
         mainButton.setOnClickListener(new View.OnClickListener() {
 
@@ -104,5 +107,23 @@ public class DecibelsActivity extends ActivityBaseClass {
                 startActivityForResult(intent, 0);
             }
         });
+
+        decibelResest.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                onStop();
+                decibelAvg.setText("0.00");
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //stuff goes here
+                    }
+                }, 5000);
+                onResume();
+            }
+        });
+
     }
 }

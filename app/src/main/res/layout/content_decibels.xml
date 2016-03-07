@@ -23,7 +23,6 @@
         android:text="White backgrounds hurt my eyes"
         android:id="@+id/textView"
         android:backgroundTint="#000000"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -33,8 +32,7 @@
         android:text="Minimum"
         android:id="@+id/textView2"
         android:textColor="#e0e0e0"
-        android:layout_marginTop="71dp"
-        android:layout_below="@+id/editText"
+        android:layout_above="@+id/textView5"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView" />
 
@@ -45,7 +43,7 @@
         android:text="Average"
         android:id="@+id/textView3"
         android:textColor="#e0e0e0"
-        android:layout_alignTop="@+id/textView2"
+        android:layout_alignTop="@+id/textView4"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -55,19 +53,10 @@
         android:text="Maximum"
         android:id="@+id/textView4"
         android:textColor="#e0e0e0"
-        android:layout_alignTop="@+id/textView3"
+        android:layout_below="@+id/textView"
         android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
-
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Decibel ToggleButton"
-        android:id="@+id/toggleButtonDecibel"
-        android:checked="false"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/decibelAvg"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginTop="34dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -115,15 +104,6 @@
         android:layout_toRightOf="@+id/textView3"
         android:layout_toEndOf="@+id/textView3" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:text="Note to Self: Make Drawable here"
-        android:textColor="#d30000"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
-
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,5 +113,15 @@
         android:layout_toLeftOf="@+id/textView7"
         android:layout_toStartOf="@+id/textView7"
         android:layout_marginBottom="63dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:id="@+id/decibelResest"
+        android:layout_above="@+id/imgBtnGoToMainFromDecActivity"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3" />
 
 </RelativeLayout>
