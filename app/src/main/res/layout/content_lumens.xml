@@ -186,7 +186,7 @@
                     <ImageButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageButton4"
+                        android:id="@+id/imgBtnGoToMainFromLumActivity"
                         android:layout_marginTop="83dp"
                         android:src="@drawable/main"
                         android:layout_below="@+id/button"

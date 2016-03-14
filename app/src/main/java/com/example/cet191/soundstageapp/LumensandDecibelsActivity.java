@@ -1,19 +1,50 @@
 package com.example.cet191.soundstageapp;
 
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LumensandDecibelsActivity extends LumensActivityBase {
+
     Thread runner;
     boolean runRunner;
     DecibelReader decibelReader = new DecibelReader();
     TextView decibelAvg;
+    TextView decibelMin;
+    TextView decibelMax;
+
+    private List<Double> decibelList = new ArrayList<Double>();;
+
+    private Double getDecibelMin()
+    {
+        return Collections.min(decibelList);
+    }
+    private Double getDecibelMax()
+    {
+        return Collections.max(decibelList);
+    }
+    private Double getDecibelAvg()
+    {
+        Double sum = 0d;
+
+        for(Double d : decibelList)
+        {
+            sum += d;
+        }
+
+        return sum/decibelList.size();
+    }
 
     final Runnable updater = new Runnable() {
         public void run() {
@@ -29,16 +60,19 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lumensand_decibels);
 
-        ImageButton btnMain = (ImageButton)findViewById(R.id.imgBtnGoToMainFromDecActivity);
-        btnMain.setVisibility(View.INVISIBLE);
+        ImageButton btnMainTop = (ImageButton)findViewById(R.id.imgBtnGoToMainFromDecActivity);
+        btnMainTop.setVisibility(View.INVISIBLE);
 
         try {
             decibelAvg = (TextView) findViewById(R.id.decibelAvg);
-            //  decibelAvg.setText(Double.toString(decibelReader.getAmplitudeEMA()));
+            decibelMax = (TextView) findViewById(R.id.decibelMax);
+            decibelMin = (TextView) findViewById(R.id.decibelMin);
 
         } catch (Exception ex) {
             System.out.println(ex.getStackTrace());
         }
+
+        addListenerOnButton();
     }
 
     private void startRunner() {
@@ -68,6 +102,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
     protected void onResume() {
         super.onResume();
 
+        decibelList.clear();
         decibelReader.start();
         startRunner();
     }
@@ -80,12 +115,43 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         decibelReader.stop();
     }
 
-    void updateView()
-    {
-        String currentReading = String.format("%.2f", decibelReader.getAmplitudeEMA());
-        decibelAvg.setText(currentReading);
+    void updateView() {
+        double currentReading =  decibelReader.getAmplitudeEMA();
+        String currentFormattedReading = String.format("%.2f", currentReading);
+
+        decibelList.add(currentReading);
+        String avg = String.format("%.2f", getDecibelAvg());
+        decibelAvg.setText(avg);
+        String min = String.format("%.2f", getDecibelMin());
+        decibelMin.setText(min);
+        String max = String.format("%.2f", getDecibelMax());
+        decibelMax.setText(max);
+
         if (BuildConfig.DEBUG) {
-            Log.d(this.getLocalClassName(), "Decibels read: " + currentReading);
+            Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
         }
+    }
+
+    public void addListenerOnButton() {
+
+        ImageButton mainButton = (ImageButton) findViewById(R.id.imgBtnGoToMainFromLumActivity);
+        Button decibelResest = (Button) findViewById(R.id.decibelResest);
+
+        mainButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        decibelResest.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                decibelList.clear();
+            }
+        });
     }
 }

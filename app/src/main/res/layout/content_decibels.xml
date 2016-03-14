@@ -109,10 +109,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgBtnGoToMainFromDecActivity"
         android:src="@drawable/main"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/decibelMax"
-        android:layout_toStartOf="@+id/decibelMax"
-        android:layout_marginBottom="63dp" />
+        android:layout_below="@+id/decibelResest"
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -120,8 +118,9 @@
         android:layout_height="wrap_content"
         android:text="Reset"
         android:id="@+id/decibelResest"
-        android:layout_above="@+id/imgBtnGoToMainFromDecActivity"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3" />
+        android:layout_below="@+id/decibelAvg"
+        android:layout_toLeftOf="@+id/decibleImage"
+        android:layout_toStartOf="@+id/decibleImage"
+        android:layout_marginTop="184dp" />
 
 </RelativeLayout>

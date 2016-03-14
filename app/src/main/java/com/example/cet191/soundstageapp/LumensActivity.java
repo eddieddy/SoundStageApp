@@ -29,7 +29,7 @@ public class LumensActivity extends LumensActivityBase {
 
     public void addListenerOnButton() {
 
-        ImageButton mainButton = (ImageButton) findViewById(R.id.imageButton4);
+        ImageButton mainButton = (ImageButton) findViewById(R.id.imgBtnGoToMainFromLumActivity);
 
         mainButton.setOnClickListener(new View.OnClickListener() {
 
