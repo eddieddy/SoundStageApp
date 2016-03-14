@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
+/***
  * Created by Eddie on 2/24/2016.
  */
 public class LumensActivityBase extends ActivityBaseClass {
