@@ -14,12 +14,41 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 
 public class DecibelsActivity extends ActivityBaseClass {
+    private List<Double> decibelList = new ArrayList<Double>();;
+
+    private Double getDecibelMin()
+    {
+        return Collections.min(decibelList);
+    }
+    private Double getDecibelMax()
+    {
+        return Collections.max(decibelList);
+    }
+    private Double getDecibelAvg()
+    {
+        Double sum = 0d;
+
+        for(Double d : decibelList)
+        {
+            sum += d;
+        }
+
+        return sum/decibelList.size();
+    }
+
     Thread runner;
     boolean runRunner;
     DecibelReader decibelReader = new DecibelReader();
     TextView decibelAvg;
+    TextView decibelMin;
+    TextView decibelMax;
 
     final Runnable updater = new Runnable() {
         public void run() {
@@ -36,7 +65,8 @@ public class DecibelsActivity extends ActivityBaseClass {
 
         try {
             decibelAvg = (TextView) findViewById(R.id.decibelAvg);
-            //  decibelAvg.setText(Double.toString(decibelReader.getAmplitudeEMA()));
+            decibelMax = (TextView) findViewById(R.id.decibelMax);
+            decibelMin = (TextView) findViewById(R.id.decibelMin);
 
         } catch (Exception ex) {
             System.out.println(ex.getStackTrace());
@@ -72,6 +102,7 @@ public class DecibelsActivity extends ActivityBaseClass {
     protected void onResume() {
         super.onResume();
 
+        decibelList.clear();
         decibelReader.start();
         startRunner();
     }
@@ -85,10 +116,19 @@ public class DecibelsActivity extends ActivityBaseClass {
     }
 
     void updateView() {
-        String currentReading = String.format("%.2f", decibelReader.getAmplitudeEMA());
-        decibelAvg.setText(currentReading);
+        double currentReading =  decibelReader.getAmplitudeEMA();
+        String currentFormattedReading = String.format("%.2f", currentReading);
+
+        decibelList.add(currentReading);
+        String avg = String.format("%.2f", getDecibelAvg());
+        decibelAvg.setText(avg);
+        String min = String.format("%.2f", getDecibelMin());
+        decibelMin.setText(min);
+        String max = String.format("%.2f", getDecibelMax());
+        decibelMax.setText(max);
+
         if (BuildConfig.DEBUG) {
-            Log.d(this.getLocalClassName(), "Decibels read: " + currentReading);
+            Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
         }
     }
 
@@ -111,17 +151,7 @@ public class DecibelsActivity extends ActivityBaseClass {
         decibelResest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                onStop();
-                decibelAvg.setText("0.00");
-
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //stuff goes here
-                    }
-                }, 5000);
-                onResume();
+                decibelList.clear();
             }
         });
 
