@@ -140,11 +140,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         String max = String.format("%.2f", getDecibelMax());
         decibelMax.setText(max);
 
-        // Enable Javascript.
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setUseWideViewPort(true);
-        String function = String.format("javascript:setGraph(%d)", (int)currentReading * 10);
+        String function = String.format("javascript:setGraph(%d)", (int)currentReading);
         webView.loadUrl(function);
 
         if (BuildConfig.DEBUG) {

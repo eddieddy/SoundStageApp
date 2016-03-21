@@ -3,7 +3,9 @@ package com.example.cet191.soundstageapp;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -22,20 +24,20 @@ public class DecibelGraph extends View {
     }
     private Paint arcPaint;
 
-    public GaugeView(Context context) {
-        super(context);
+    public DecibelGraph(Context context) {
+       super(context);
         initialize();
     }
-
-    public GaugeView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initialize();
-    }
-
-    public GaugeView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initialize();
-    }
+//
+//    public GaugeView(Context context, AttributeSet attrs) {
+//        super(context, attrs);
+//        initialize();
+//    }
+//
+//    public GaugeView(Context context, AttributeSet attrs, int defStyleAttr) {
+//        super(context, attrs, defStyleAttr);
+//        initialize();
+//    }
 
     private void initialize() {
         arcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
