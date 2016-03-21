@@ -10,8 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.cet191.soundstageapp.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.example.cet191.soundstageapp.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,40 +19,46 @@
         android:id="@+id/textView8" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
-        android:src="@drawable/bulb1"
-        android:layout_marginBottom="145dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:id="@+id/LumButton"
+        android:src="@drawable/bulbRounded"
+        android:layout_marginBottom="60dp"
+        android:layout_alignWithParentIfMissing="false"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false"
+        android:background="@android:color/transparent" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageButton2"
-        android:src="@drawable/speaker1"
-        android:layout_alignTop="@+id/imageButton"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:id="@+id/DecButton"
+        android:src="@drawable/speakerRounded"
+        android:layout_alignTop="@+id/LumButton"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent" />
+
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgBtnLumAndDec"
-        android:src="@drawable/bulb_speaker"
+        android:src="@drawable/bs_round"
         android:layout_marginRight="94dp"
         android:layout_marginEnd="94dp"
         android:layout_marginTop="50dp"
-        android:layout_above="@+id/imageButton"
+        android:layout_above="@+id/LumButton"
         android:layout_marginBottom="33dp"
-        android:layout_alignRight="@+id/imageButton2"
-        android:layout_alignEnd="@+id/imageButton2"
+        android:layout_alignRight="@+id/DecButton"
+        android:layout_alignEnd="@+id/DecButton"
         android:layout_below="@+id/textView8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="94dp"
-        android:layout_marginStart="94dp" />
+        android:layout_marginStart="94dp"
+        android:background="@android:color/transparent" />
 
 </RelativeLayout>

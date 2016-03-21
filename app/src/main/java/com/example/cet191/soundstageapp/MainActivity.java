@@ -2,8 +2,6 @@ package com.example.cet191.soundstageapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -20,8 +18,8 @@ public class MainActivity extends ActivityBaseClass {
 
     public void addListenerOnButton() {
 
-        ImageButton decibelButton = (ImageButton) findViewById(R.id.imageButton2);
-        ImageButton luminsButton = (ImageButton) findViewById(R.id.imageButton);
+        ImageButton decibelButton = (ImageButton) findViewById(R.id.DecButton);
+        ImageButton luminsButton = (ImageButton) findViewById(R.id.LumButton);
         ImageButton decLumButton = (ImageButton)findViewById(R.id.imgBtnLumAndDec);
 
         luminsButton.setOnClickListener(new View.OnClickListener() {

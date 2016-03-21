@@ -110,7 +110,9 @@
         android:id="@+id/imgBtnGoToMainFromDecActivity"
         android:src="@drawable/main"
         android:layout_below="@+id/decibelResest"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:adjustViewBounds="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

@@ -10,7 +10,7 @@ import android.view.View;
 /**
  * Created by Phil on 3/4/2016.
  */
-/*
+
 public class DecibelGraph extends View {
     private static Canvas canvas = null;
     Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
@@ -84,4 +84,3 @@ public class DecibelGraph extends View {
     }
 
     }
-*/
