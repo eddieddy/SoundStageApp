@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Speedometer HTML5 Canvas</title>
+    <script src="speedometer.js"></script>
+    <script type="text/javascript">
+        function setGraph(speed)
+        {
+            drawWithInputValue(speed);
+        }
+    </script>
+</head>
+<body onload='draw(0);'>
+<canvas id="tutorial" >Canvas not available.</canvas>
+<div>
+   <form id="drawTemp">
+        <input type="text" id="txtSpeed" name="txtSpeed" value="20" maxlength="2"/>
+        <input type="button" value="Draw" onclick="setGraph();">
+    </form>
+</div>
+</body>
+</html>

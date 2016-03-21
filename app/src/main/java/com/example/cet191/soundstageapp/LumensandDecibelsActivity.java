@@ -7,6 +7,9 @@ import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -23,6 +26,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
     TextView decibelAvg;
     TextView decibelMin;
     TextView decibelMax;
+    WebView webView;
 
     private List<Double> decibelList = new ArrayList<Double>();;
 
@@ -67,6 +71,15 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
             decibelAvg = (TextView) findViewById(R.id.decibelAvg);
             decibelMax = (TextView) findViewById(R.id.decibelMax);
             decibelMin = (TextView) findViewById(R.id.decibelMin);
+
+            webView = (WebView)findViewById(R.id.lumensWebView);
+            // Enable Javascript.
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setUseWideViewPort(true);
+
+
+            webView.loadUrl("file:///android_asset/lumensHtml.html");
 
         } catch (Exception ex) {
             System.out.println(ex.getStackTrace());
@@ -126,6 +139,13 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         decibelMin.setText(min);
         String max = String.format("%.2f", getDecibelMax());
         decibelMax.setText(max);
+
+        // Enable Javascript.
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setUseWideViewPort(true);
+        String function = String.format("javascript:setGraph(%d)", (int)currentReading * 10);
+        webView.loadUrl(function);
 
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
