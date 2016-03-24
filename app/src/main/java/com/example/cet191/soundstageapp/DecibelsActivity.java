@@ -49,6 +49,8 @@ public class DecibelsActivity extends ActivityBaseClass {
     TextView decibelAvg;
     TextView decibelMin;
     TextView decibelMax;
+    Speedometer speedometer;
+    private static final String TAG = "DecibelsActivity";
 
     final Runnable updater = new Runnable() {
         public void run() {
@@ -62,6 +64,7 @@ public class DecibelsActivity extends ActivityBaseClass {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_decibels);
+        speedometer = (Speedometer) findViewById(R.id.Speedometer);
 
         try {
             decibelAvg = (TextView) findViewById(R.id.decibelAvg);
@@ -127,6 +130,9 @@ public class DecibelsActivity extends ActivityBaseClass {
         String max = String.format("%.2f", getDecibelMax());
         decibelMax.setText(max);
 
+        // Update the decibel graph.
+        speedometer.onSpeedChanged((float)currentReading);
+
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
         }
@@ -134,19 +140,7 @@ public class DecibelsActivity extends ActivityBaseClass {
 
     public void addListenerOnButton() {
 
-        ImageButton mainButton = (ImageButton) findViewById(R.id.imgBtnGoToMainFromDecActivity);
         Button decibelResest = (Button) findViewById(R.id.decibelResest);
-
-
-        mainButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
 
         decibelResest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -23,25 +23,6 @@ public class LumensActivity extends LumensActivityBase {
         setContentView(R.layout.activity_lumens);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        addListenerOnButton();
-
-    }
-
-    public void addListenerOnButton() {
-
-        ImageButton mainButton = (ImageButton) findViewById(R.id.imgBtnGoToMainFromLumActivity);
-
-        mainButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivityForResult(intent, 0);
-            }
-
-        });
-
     }
 
     public void onSensorChanged(SensorEvent event) {

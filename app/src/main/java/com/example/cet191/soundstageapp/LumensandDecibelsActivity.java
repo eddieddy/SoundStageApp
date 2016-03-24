@@ -27,6 +27,8 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
     TextView decibelMin;
     TextView decibelMax;
     WebView webView;
+    Speedometer speedometer;
+    private static final String TAG = "LumensandDecibelsActivity";
 
     private List<Double> decibelList = new ArrayList<Double>();;
 
@@ -64,13 +66,13 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lumensand_decibels);
 
-        ImageButton btnMainTop = (ImageButton)findViewById(R.id.imgBtnGoToMainFromDecActivity);
-        btnMainTop.setVisibility(View.INVISIBLE);
-
         try {
             decibelAvg = (TextView) findViewById(R.id.decibelAvg);
             decibelMax = (TextView) findViewById(R.id.decibelMax);
             decibelMin = (TextView) findViewById(R.id.decibelMin);
+
+            // Instantiate our graph for decibels.
+            speedometer = (Speedometer) findViewById(R.id.Speedometer);
 
             webView = (WebView)findViewById(R.id.lumensWebView);
             // Enable Javascript.
@@ -140,6 +142,9 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         String max = String.format("%.2f", getDecibelMax());
         decibelMax.setText(max);
 
+        // Update the decibel graph.
+        speedometer.onSpeedChanged((float)currentReading);
+
         String function = String.format("javascript:setGraph(%d)", (int)currentReading);
         webView.loadUrl(function);
 
@@ -150,18 +155,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
 
     public void addListenerOnButton() {
 
-        ImageButton mainButton = (ImageButton) findViewById(R.id.imgBtnGoToMainFromLumActivity);
         Button decibelResest = (Button) findViewById(R.id.decibelResest);
-
-        mainButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
 
         decibelResest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
