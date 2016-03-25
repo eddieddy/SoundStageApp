@@ -26,30 +26,29 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
     TextView decibelAvg;
     TextView decibelMin;
     TextView decibelMax;
-    WebView webView;
     Speedometer speedometer;
+    Button btnResetLumens;
     private static final String TAG = "LumensandDecibelsActivity";
 
-    private List<Double> decibelList = new ArrayList<Double>();;
+    private List<Double> decibelList = new ArrayList<Double>();
+    ;
 
-    private Double getDecibelMin()
-    {
+    private Double getDecibelMin() {
         return Collections.min(decibelList);
     }
-    private Double getDecibelMax()
-    {
+
+    private Double getDecibelMax() {
         return Collections.max(decibelList);
     }
-    private Double getDecibelAvg()
-    {
+
+    private Double getDecibelAvg() {
         Double sum = 0d;
 
-        for(Double d : decibelList)
-        {
+        for (Double d : decibelList) {
             sum += d;
         }
 
-        return sum/decibelList.size();
+        return sum / decibelList.size();
     }
 
     final Runnable updater = new Runnable() {
@@ -66,22 +65,44 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lumensand_decibels);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (min == null)
+            min = (TextView) findViewById(R.id.txtLumensMin);
+        if (max == null)
+            max = (TextView) findViewById(R.id.txtLumensMax);
+        if (avg == null)
+            avg = (TextView) findViewById(R.id.txtLumensAvg);
+
+        if(btnResetLumens == null)
+        {
+            btnResetLumens = (Button) findViewById(R.id.btnResetLumens);
+
+            btnResetLumens.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    resetLightReadings();
+                }
+            });
+        }
+
         try {
+            if(decibelAvg == null)
             decibelAvg = (TextView) findViewById(R.id.decibelAvg);
+            if(decibelMax == null)
             decibelMax = (TextView) findViewById(R.id.decibelMax);
+            if(decibelMin == null)
             decibelMin = (TextView) findViewById(R.id.decibelMin);
 
             // Instantiate our graph for decibels.
-            speedometer = (Speedometer) findViewById(R.id.Speedometer);
+            if (speedometer == null) {
+                speedometer = (Speedometer) findViewById(R.id.Speedometer);
+            }
 
-            webView = (WebView)findViewById(R.id.lumensWebView);
-            // Enable Javascript.
-            WebSettings webSettings = webView.getSettings();
-            webSettings.setJavaScriptEnabled(true);
-            webSettings.setUseWideViewPort(true);
-
-
-            webView.loadUrl("file:///android_asset/lumensHtml.html");
+            if (lumensmeter == null) {
+                lumensmeter = (Speedometer) findViewById(R.id.Lumensmeter);
+            }
 
         } catch (Exception ex) {
             System.out.println(ex.getStackTrace());
@@ -131,7 +152,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
     }
 
     void updateView() {
-        double currentReading =  decibelReader.getAmplitudeEMA();
+        double currentReading = decibelReader.getAmplitudeEMA();
         String currentFormattedReading = String.format("%.2f", currentReading);
 
         decibelList.add(currentReading);
@@ -143,10 +164,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         decibelMax.setText(max);
 
         // Update the decibel graph.
-        speedometer.onSpeedChanged((float)currentReading);
-
-        String function = String.format("javascript:setGraph(%d)", (int)currentReading);
-        webView.loadUrl(function);
+        speedometer.setCurrentSpeed((float) currentReading);
 
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));

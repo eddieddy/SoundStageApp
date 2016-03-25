@@ -2,6 +2,7 @@ package com.example.cet191.soundstageapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -10,6 +11,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,11 @@ public class LumensActivityBase extends ActivityBaseClass {
     private List<Integer> _lightReadings;
     SensorManager sensorManager;
     Sensor lightSensor;
+    Speedometer lumensmeter;
+    TextView min;
+    TextView avg;
+    TextView max;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -73,9 +82,6 @@ public class LumensActivityBase extends ActivityBaseClass {
         lightSensor
                 = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -115,27 +121,26 @@ public class LumensActivityBase extends ActivityBaseClass {
         public void onSensorChanged(SensorEvent event) {
             // TODO Auto-generated method stub
             if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
-                final float currentReading = event.values[0];
+                float currentReading = event.values[0];
 
                 // Get our reading and add it to the list.
                 int reading = (int) currentReading;
                 addLightReading(reading);
 
                 // set the avg reading.
-                TextView min = (TextView) findViewById(R.id.txtLumensMin);
                 String minValue = Integer.toString(getMinLightReading());
                 min.setText(minValue);
 
                 // set the min reading.
-                TextView avg = (TextView) findViewById(R.id.txtLumensAvg);
                 String avgValue = Integer.toString(getAverageLightReading());
                 avg.setText(avgValue);
 
                 // set the max reading.
-                TextView max = (TextView) findViewById(R.id.txtLumensMax);
                 String maxValue = Integer.toString(getMaxLightReading());
                 max.setText(maxValue);
 
+                // Update the lumens graph.
+                lumensmeter.setCurrentSpeed(currentReading);
                 if (BuildConfig.DEBUG) {
                     Log.d(getLocalClassName(), String.format("Light readings: current: %s, min: %s, max: %s, avg: %s", currentReading, minValue, maxValue, avgValue));
                 }

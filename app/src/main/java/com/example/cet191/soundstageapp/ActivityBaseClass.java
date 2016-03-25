@@ -1,7 +1,9 @@
 package com.example.cet191.soundstageapp;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,6 +15,8 @@ public class ActivityBaseClass extends AppCompatActivity {
     // Code added to add the menu.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 
         return true;
     }
@@ -30,15 +34,14 @@ public class ActivityBaseClass extends AppCompatActivity {
             Intent i = new Intent(this, DecibelsActivity.class);
             startActivity(i);
         }
-        if(id == R.id.display_lumens){
+        else if(id == R.id.display_lumens){
             Intent i = new Intent(this, LumensActivity.class);
             startActivity(i);
         }
-        if(id == R.id.display_lumensanddecibels){
+       else if(id == R.id.display_lumensanddecibels){
             Intent i = new Intent(this, LumensandDecibelsActivity.class);
             startActivity(i);
         }
-
         else if(id == R.id.display_main)
         {
             Intent i = new Intent(this, MainActivity.class);

@@ -64,6 +64,10 @@ public class DecibelsActivity extends ActivityBaseClass {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_decibels);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         speedometer = (Speedometer) findViewById(R.id.Speedometer);
 
         try {
@@ -131,7 +135,7 @@ public class DecibelsActivity extends ActivityBaseClass {
         decibelMax.setText(max);
 
         // Update the decibel graph.
-        speedometer.onSpeedChanged((float)currentReading);
+        speedometer.setCurrentSpeed((float)currentReading);
 
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));

@@ -11,7 +11,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class Speedometer extends View implements SpeedChangeListener {
+public class Speedometer extends View{//} implements SpeedChangeListener {
 	private static final String TAG = Speedometer.class.getSimpleName();
 	public static final float DEFAULT_MAX_SPEED = 300; // Assuming this is km/h and you drive a super-car
 
@@ -20,6 +20,7 @@ public class Speedometer extends View implements SpeedChangeListener {
 	private float mCurrentSpeed;
 	
 	// Scale drawing tools
+	private Paint onMarkLowPaint;
 	private Paint onMarkPaint;
 	private Paint offMarkPaint;
 	private Paint scalePaint;
@@ -29,11 +30,13 @@ public class Speedometer extends View implements SpeedChangeListener {
 	final RectF oval = new RectF();
 	
 	// Drawing colors
+	private int ON_LOW_COLOR = Color.argb(255, 0xff, 0xA5, 0x00);
 	private int ON_COLOR = Color.argb(255, 0xff, 0xA5, 0x00);
 	private int OFF_COLOR = Color.argb(255, 0x3e, 0x3e, 0x3e);
 	private int SCALE_COLOR = Color.argb(255, 255, 255, 255);
 	private float SCALE_SIZE = 14f;
 	private float READING_SIZE = 60f;
+	private float MARK_WIDTH = 35f;
 	
 	// Scale configuration
 	private float centerX;
@@ -52,11 +55,13 @@ public class Speedometer extends View implements SpeedChangeListener {
 		try{
 			mMaxSpeed = a.getFloat(R.styleable.Speedometer_maxSpeed, DEFAULT_MAX_SPEED);
 			mCurrentSpeed = a.getFloat(R.styleable.Speedometer_currentSpeed, 0);
+			ON_LOW_COLOR = a.getColor(R.styleable.Speedometer_onColor, ON_LOW_COLOR);
 			ON_COLOR = a.getColor(R.styleable.Speedometer_onColor, ON_COLOR);
 			OFF_COLOR = a.getColor(R.styleable.Speedometer_offColor, OFF_COLOR);
 			SCALE_COLOR = a.getColor(R.styleable.Speedometer_scaleColor, SCALE_COLOR);
 			SCALE_SIZE = a.getDimension(R.styleable.Speedometer_scaleTextSize, SCALE_SIZE);
 			READING_SIZE = a.getDimension(R.styleable.Speedometer_readingTextSize, READING_SIZE);
+			MARK_WIDTH = a.getFloat(R.styleable.Speedometer_markWidth, MARK_WIDTH);
 		} finally{
 			a.recycle();
 		}
@@ -64,10 +69,17 @@ public class Speedometer extends View implements SpeedChangeListener {
 	}
 	
 	private void initDrawingTools(){
+		onMarkLowPaint = new Paint();
+		onMarkLowPaint.setStyle(Paint.Style.STROKE);
+		onMarkLowPaint.setColor(ON_LOW_COLOR);
+		onMarkLowPaint.setStrokeWidth(MARK_WIDTH);
+		onMarkLowPaint.setShadowLayer(5f, 0f, 0f, ON_COLOR);
+		onMarkLowPaint.setAntiAlias(true);
+
 		onMarkPaint = new Paint();
 		onMarkPaint.setStyle(Paint.Style.STROKE);
 		onMarkPaint.setColor(ON_COLOR);
-		onMarkPaint.setStrokeWidth(35f);
+		onMarkPaint.setStrokeWidth(MARK_WIDTH);
 		onMarkPaint.setShadowLayer(5f, 0f, 0f, ON_COLOR);
 		onMarkPaint.setAntiAlias(true);
 		
@@ -104,6 +116,8 @@ public class Speedometer extends View implements SpeedChangeListener {
 			this.mCurrentSpeed = 0;
 		else
 			this.mCurrentSpeed = mCurrentSpeed;
+
+        this.invalidate();
 	}
 	
 	@Override
@@ -175,6 +189,14 @@ public class Speedometer extends View implements SpeedChangeListener {
 	}
 	
 	private void drawScale(Canvas canvas){
+
+		onPath.reset();
+		// Draw the low marks.
+		for(int i = -180; i < (mCurrentSpeed/mMaxSpeed)*180 - 180; i+=4){
+			onPath.addArc(oval, i, 2f);
+		}
+		canvas.drawPath(onPath, onMarkLowPaint);
+
 		onPath.reset();
 		for(int i = -180; i < (mCurrentSpeed/mMaxSpeed)*180 - 180; i+=4){
 			onPath.addArc(oval, i, 2f);
@@ -188,11 +210,11 @@ public class Speedometer extends View implements SpeedChangeListener {
 		Path circle = new Path();
 		double halfCircumference = radius * Math.PI;
 		double increments = 20;
-		for(int i = 0; i < this.mMaxSpeed; i += increments){
+		for(int i = 0; i <= this.mMaxSpeed; i += increments){
 			circle.addCircle(centerX, centerY, radius, Path.Direction.CW);
 			canvas.drawTextOnPath(String.format("%d", i),
 								circle, 
-								(float) (i*halfCircumference/this.mMaxSpeed), 
+								(float) ((i*halfCircumference/this.mMaxSpeed ) * .9),
 								-30f,
 								scalePaint);			
 		}
@@ -213,9 +235,9 @@ public class Speedometer extends View implements SpeedChangeListener {
 		canvas.drawTextOnPath(message, path, 0f, 0f, readingPaint);
 	}
 
-	@Override
-	public void onSpeedChanged(float newSpeedValue) {
-		this.setCurrentSpeed(newSpeedValue);
-		this.invalidate();
-	}
+//	@Override
+//	public void onSpeedChanged(float newSpeedValue) {
+//		this.setCurrentSpeed(newSpeedValue);
+//		this.invalidate();
+//	}
 }

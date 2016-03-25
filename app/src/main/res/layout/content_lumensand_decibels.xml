@@ -1,88 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-     android:layout_height="match_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:textColor="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.cet191.soundstageapp.LumensandDecibelsActivity"
+    tools:showIn="@layout/activity_lumensand_decibels">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-
-
-
-
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <include
+            layout="@layout/content_decibels"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="1"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            tools:context="com.example.cet191.soundstageapp.LumensandDecibelsActivity"
-            tools:showIn="@layout/activity_lumensand_decibels"
-            android:orientation="vertical">
+            android:layout_height="356dp" />
 
+        <include
+            layout="@layout/content_lumens"
+            android:layout_width="match_parent"
+            android:layout_height="356dp" />
 
-            <include
-                android:layout_width="match_parent"
-                android:layout_height="458dp"
-                android:layout_marginTop="40dp"
-                layout="@layout/content_decibels" />
+    </LinearLayout>
 
-            <include
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight=".5"
-                layout="@layout/content_lumens" />
-
-
-
-
-        </LinearLayout>
-    </ScrollView>
-
-    <!--
-        //Here is the code to display a gauge  using gaugeSVG i still get an error even though its commented
-
-            <script src="javascript/gaugeSVG.js"></script>
-            <script>
-        window.onload = function(){
-            var gauge1 = new GaugeSVG({
-                id: "container1"
-            });
-        };
-    </script>
-    <div id="container1" style="width:350px; height:300px"></div>
-            <script>
-                window.onload = function(){
-                var gauge2 = new GaugeSVG({
-                id: "container2",
-                value: 49,
-                valueColor: "#444488",
-                min: 30,
-                max: 70,
-                minmaxColor: "#444488",
-                title: "Gauge 2",
-                titleColor: "#8888cc",
-                label: "m&sup3;/h (passage)",
-                labelColor: "#8888cc",
-                gaugeWidthScale: 1.25,
-                gaugeBorderColor: "#222244",
-                gaugeBorderWidth: 1.5,
-                gaugeShadowColor: "#444488",
-                gaugeShadowScale: 1.35,
-                canvasBackColor: "#f8eeff",
-                gaugeBackColor: "#ccccff",
-                needleColor: "#8888cc",
-                lowerActionLimit: 0,  // Use '0' to disable. A '-1' is obsolete with version 2.0.
-                lowerWarningLimit: 0, // Use '0' to disable. A '-1' is obsolete with version 2.0.
-                upperWarningLimit: 0, // Use '0' to disable. A '-1' is obsolete with version 2.0.
-                upperActionLimit: 0,  // Use '0' to disable. A '-1' is obsolete with version 2.0.
-                });
-                };
-            </script>
-
-            -->
+</ScrollView>
