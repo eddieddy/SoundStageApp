@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +23,6 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
 
     Thread runner;
     boolean runRunner;
-    DecibelReader decibelReader = new DecibelReader();
     TextView decibelAvg;
     TextView decibelMin;
     TextView decibelMax;
@@ -31,7 +31,6 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
     private static final String TAG = "LumensandDecibelsActivity";
 
     private List<Double> decibelList = new ArrayList<Double>();
-    ;
 
     private Double getDecibelMin() {
         return Collections.min(decibelList);
@@ -74,8 +73,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         if (avg == null)
             avg = (TextView) findViewById(R.id.txtLumensAvg);
 
-        if(btnResetLumens == null)
-        {
+        if (btnResetLumens == null) {
             btnResetLumens = (Button) findViewById(R.id.btnResetLumens);
 
             btnResetLumens.setOnClickListener(new View.OnClickListener() {
@@ -88,12 +86,12 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         }
 
         try {
-            if(decibelAvg == null)
-            decibelAvg = (TextView) findViewById(R.id.decibelAvg);
-            if(decibelMax == null)
-            decibelMax = (TextView) findViewById(R.id.decibelMax);
-            if(decibelMin == null)
-            decibelMin = (TextView) findViewById(R.id.decibelMin);
+            if (decibelAvg == null)
+                decibelAvg = (TextView) findViewById(R.id.decibelAvg);
+            if (decibelMax == null)
+                decibelMax = (TextView) findViewById(R.id.decibelMax);
+            if (decibelMin == null)
+                decibelMin = (TextView) findViewById(R.id.decibelMin);
 
             // Instantiate our graph for decibels.
             if (speedometer == null) {
@@ -108,7 +106,8 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
             System.out.println(ex.getStackTrace());
         }
 
-        addListenerOnButton();
+        Button decibelResest = (Button) findViewById(R.id.decibelResest);
+        decibelResest.setVisibility(View.INVISIBLE);
     }
 
     private void startRunner() {
@@ -140,7 +139,13 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
 
         decibelList.clear();
         decibelReader.start();
-        startRunner();
+        if (decibelReader.isRunning()) {
+            startRunner();
+        } else {
+            Toast.makeText(this,
+                    "Either your need to allow microphone permission or your device does not allow access to microphone!",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -156,11 +161,11 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         String currentFormattedReading = String.format("%.2f", currentReading);
 
         decibelList.add(currentReading);
-        String avg = String.format("%.2f", getDecibelAvg());
+        String avg = String.format("Avg: %.2f", getDecibelAvg());
         decibelAvg.setText(avg);
-        String min = String.format("%.2f", getDecibelMin());
+        String min = String.format("Min: %.2f", getDecibelMin());
         decibelMin.setText(min);
-        String max = String.format("%.2f", getDecibelMax());
+        String max = String.format("Max: %.2f", getDecibelMax());
         decibelMax.setText(max);
 
         // Update the decibel graph.
@@ -169,17 +174,5 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
         }
-    }
-
-    public void addListenerOnButton() {
-
-        Button decibelResest = (Button) findViewById(R.id.decibelResest);
-
-        decibelResest.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                decibelList.clear();
-            }
-        });
     }
 }

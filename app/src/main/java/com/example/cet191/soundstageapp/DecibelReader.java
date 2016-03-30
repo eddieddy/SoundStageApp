@@ -1,6 +1,5 @@
 package com.example.cet191.soundstageapp;
 
-import android.graphics.Canvas;
 import android.media.MediaRecorder;
 
 import java.io.IOException;
@@ -26,25 +25,29 @@ public class DecibelReader {
     public void start() {
 
         if (mRecorder == null) {
-
-            mRecorder = new MediaRecorder();
-            mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-            mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            mRecorder.setOutputFile("/dev/null");
-
             try {
-                mRecorder.prepare();
-            } catch (IllegalStateException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+                mRecorder = new MediaRecorder();
+                mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+                mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+                mRecorder.setOutputFile("/dev/null");
 
-            mRecorder.start();
-            mEMA = 0.0;
+                try {
+                    mRecorder.prepare();
+                } catch (IllegalStateException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                mRecorder.start();
+                mEMA = 0.0;
+            } catch (Exception eex) {
+                // Eat it!
+                mRecorder = null;
+            }
         }
     }
 
@@ -69,6 +72,4 @@ public class DecibelReader {
         mEMA = EMA_FILTER * amp + (1.0 - EMA_FILTER) * mEMA;
         return mEMA;
     }
-
-
 }

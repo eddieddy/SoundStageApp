@@ -11,7 +11,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class Speedometer extends View{//} implements SpeedChangeListener {
+public class Speedometer extends View{
 	private static final String TAG = Speedometer.class.getSimpleName();
 	public static final float DEFAULT_MAX_SPEED = 300; // Assuming this is km/h and you drive a super-car
 
@@ -61,7 +61,6 @@ public class Speedometer extends View{//} implements SpeedChangeListener {
 			SCALE_COLOR = a.getColor(R.styleable.Speedometer_scaleColor, SCALE_COLOR);
 			SCALE_SIZE = a.getDimension(R.styleable.Speedometer_scaleTextSize, SCALE_SIZE);
 			READING_SIZE = a.getDimension(R.styleable.Speedometer_readingTextSize, READING_SIZE);
-			MARK_WIDTH = a.getFloat(R.styleable.Speedometer_markWidth, MARK_WIDTH);
 		} finally{
 			a.recycle();
 		}

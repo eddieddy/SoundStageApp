@@ -129,15 +129,15 @@ public class LumensActivityBase extends ActivityBaseClass {
 
                 // set the avg reading.
                 String minValue = Integer.toString(getMinLightReading());
-                min.setText(minValue);
+                min.setText(String.format("Min: %s", minValue));
 
                 // set the min reading.
                 String avgValue = Integer.toString(getAverageLightReading());
-                avg.setText(avgValue);
+                avg.setText(String.format("Avg: %s", minValue));;
 
                 // set the max reading.
                 String maxValue = Integer.toString(getMaxLightReading());
-                max.setText(maxValue);
+                max.setText(String.format("Max: %s", minValue));
 
                 // Update the lumens graph.
                 lumensmeter.setCurrentSpeed(currentReading);

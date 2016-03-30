@@ -9,6 +9,5 @@
         <attr name="scaleColor" format="color"></attr>
         <attr name="scaleTextSize" format="dimension"></attr>
         <attr name="readingTextSize" format="dimension"></attr>
-        <attr name="markWidth" format="float"></attr>
     </declare-styleable>
 </resources>

@@ -24,8 +24,7 @@
             android:id="@+id/Speedometer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            custom:markWidth="50"
-            custom:maxSpeed="100"
+            custom:maxSpeed="110"
             custom:onLowColor="@color/white"
             custom:readingTextSize="16dp"
             custom:scaleTextSize="16dp"
@@ -36,41 +35,13 @@
             android:layout_height="49dp"
             android:id="@+id/imageView2"
             android:layout_gravity="center_horizontal|top"
-            android:src="@drawable/speaker_rounded" />
+            android:src="@drawable/speaker_rounded"
+            android:contentDescription="@string/speaker" />
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:weightSum="3">
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Minimum" />
-
-                <TextView
-                    android:id="@+id/editText3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Average" />
-
-                <TextView
-                    android:id="@+id/editText4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Maximum" />
-
-            </TableRow>
 
             <TableRow
                 android:layout_width="wrap_content"
@@ -81,19 +52,22 @@
                     android:id="@+id/decibelMin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:id="@+id/decibelAvg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:id="@+id/decibelMax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="#ffffff" />
 
             </TableRow>
 

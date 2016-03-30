@@ -4,6 +4,7 @@
         android:id="@+id/display_main"
         android:orderInCategory="100"
         android:title="@string/title_activity_main"
+        android:icon="@drawable/main"
         app:showAsAction="collapseActionView" />
     <item
         android:id="@+id/display_decibels"

@@ -6,4 +6,6 @@
     <string name="title_activity_lumens">Lumens</string>
     <string name="title_activity_lumensand_decibels">Lumens and Decibels</string>
     <string name="title_activity_decibel_graph">decibelGraph</string>
+    <string name="speaker">speaker</string>
+    <string name="bulb">bulb</string>
 </resources>
