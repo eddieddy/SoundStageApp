@@ -23,7 +23,7 @@
         <com.example.cet191.soundstageapp.Speedometer
             android:id="@+id/Speedometer"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="256dp"
             custom:maxSpeed="110"
             custom:onLowColor="@color/white"
             custom:readingTextSize="16dp"

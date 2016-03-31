@@ -8,6 +8,7 @@
     tools:context="com.example.cet191.soundstageapp.LumensActivity"
     tools:showIn="@layout/content_lumens">
 
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
