@@ -1,43 +1,51 @@
 package com.example.cet191.soundstageapp;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
+import android.util.Config;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 
 public class DecibelsActivity extends ActivityBaseClass {
-    private List<Double> decibelList = new ArrayList<Double>();
-    ;
+    private List<Double> decibelList = new ArrayList<Double>();;
 
-    private Double getDecibelMin() {
+    private Double getDecibelMin()
+    {
         return Collections.min(decibelList);
     }
-
-    private Double getDecibelMax() {
+    private Double getDecibelMax()
+    {
         return Collections.max(decibelList);
     }
-
-    private Double getDecibelAvg() {
+    private Double getDecibelAvg()
+    {
         Double sum = 0d;
 
-        for (Double d : decibelList) {
+        for(Double d : decibelList)
+        {
             sum += d;
         }
 
-        return sum / decibelList.size();
+        return sum/decibelList.size();
     }
 
     Thread runner;
     boolean runRunner;
-
+    DecibelReader decibelReader = new DecibelReader();
     TextView decibelAvg;
     TextView decibelMin;
     TextView decibelMax;
@@ -54,6 +62,7 @@ public class DecibelsActivity extends ActivityBaseClass {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_decibels);
 
@@ -103,13 +112,7 @@ public class DecibelsActivity extends ActivityBaseClass {
 
         decibelList.clear();
         decibelReader.start();
-        if (decibelReader.isRunning()) {
-            startRunner();
-        } else {
-            Toast.makeText(this,
-                    "Either your need to allow microphone permission or your device does not allow access to microphone!",
-                    Toast.LENGTH_LONG).show();
-        }
+        startRunner();
     }
 
     @Override
@@ -121,26 +124,30 @@ public class DecibelsActivity extends ActivityBaseClass {
     }
 
     void updateView() {
-        double currentReading = decibelReader.getAmplitudeEMA();
+        //double currentReading =  decibelReader.getAmplitudeEMA();
+        decibelList.clear();
+        double currentReading =  decibelReader.soundDb(Math.pow(10,-3));
         String currentFormattedReading = String.format("%.2f", currentReading);
 
         decibelList.add(currentReading);
-        String avg = String.format("Avg: %.2f", getDecibelAvg());
+        String avg = String.format("%.2f", getDecibelAvg());
         decibelAvg.setText(avg);
-        String min = String.format("Min: %.2f", getDecibelMin());
+        String min = String.format("%.2f", getDecibelMin());
         decibelMin.setText(min);
-        String max = String.format("Max: %.2f", getDecibelMax());
+        String max = String.format("%.2f", getDecibelMax());
         decibelMax.setText(max);
 
         // Update the decibel graph.
-        speedometer.setCurrentSpeed((float) currentReading);
+        speedometer.setCurrentSpeed((float)currentReading);
 
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
         }
+
     }
 
     public void addListenerOnButton() {
+
         Button decibelResest = (Button) findViewById(R.id.decibelResest);
 
         decibelResest.setOnClickListener(new View.OnClickListener() {
@@ -149,5 +156,6 @@ public class DecibelsActivity extends ActivityBaseClass {
                 decibelList.clear();
             }
         });
+
     }
 }

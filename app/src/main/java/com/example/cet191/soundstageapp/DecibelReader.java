@@ -59,6 +59,9 @@ public class DecibelReader {
         }
     }
 
+    public double soundDb(double ampl){
+        return  20 * Math.log10(getAmplitudeEMA() / ampl);
+    }
     public double getAmplitude() {
         if (mRecorder != null) {
             return (mRecorder.getMaxAmplitude() / 2700.0);
@@ -70,6 +73,7 @@ public class DecibelReader {
     public double getAmplitudeEMA() {
         double amp = getAmplitude();
         mEMA = EMA_FILTER * amp + (1.0 - EMA_FILTER) * mEMA;
+
         return mEMA;
     }
 }
