@@ -165,7 +165,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         //double currentReading = decibelReader.getAmplitudeEMA();
 
 
-        double currentReading =  decibelReader.soundDb(Math.pow(10,-3));
+        double currentReading =  decibelReader.soundDb();
         String currentFormattedReading = String.format("%.2f", currentReading);
 
         decibelList.add(currentReading);

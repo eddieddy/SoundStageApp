@@ -13,6 +13,7 @@ public class DecibelReader {
 
     private MediaRecorder mRecorder = null;
     private double mEMA = 0.0;
+    private double ampl = Math.pow(10, -3);
 
     public boolean isRunning (){
         return mRecorder != null;
@@ -59,8 +60,16 @@ public class DecibelReader {
         }
     }
 
-    public double soundDb(double ampl){
-        return  20 * Math.log10(getAmplitudeEMA() / ampl);
+    public double soundDb(){
+        double db =   20 * Math.log10(getAmplitudeEMA() / ampl);
+        if(db < 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return db;
+        }
     }
     public double getAmplitude() {
         if (mRecorder != null) {

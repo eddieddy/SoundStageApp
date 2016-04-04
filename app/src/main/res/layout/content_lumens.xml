@@ -14,66 +14,70 @@
     android:textColor="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.cet191.soundstageapp.LumensActivity"
-    tools:showIn="@layout/activity_lumens" >
+    tools:showIn="@layout/activity_lumens">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.example.cet191.soundstageapp.Speedometer
-                android:id="@+id/Lumensmeter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                custom:maxSpeed="300"
-                custom:onLowColor="@color/white"
-                custom:readingTextSize="16dp"
-                custom:scaleTextSize="16dp" />
+            android:id="@+id/Lumensmeter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            custom:highColor="@color/red"
+            custom:lowColor="@color/green"
+            custom:lowMax="200"
+            custom:maxSpeed="600"
+            custom:midColor="@color/orange"
+            custom:midMax="400"
+            custom:readingTextSize="16dp"
+            custom:scaleTextSize="16dp" />
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/imageView"
             android:layout_gravity="center_horizontal|top"
-            android:src="@drawable/bulb_rounded"
-            android:contentDescription="@string/bulb" />
+            android:contentDescription="@string/bulb"
+            android:src="@drawable/bulb_rounded" />
 
         <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="106dp"
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
             android:layout_gravity="center_horizontal|bottom">
 
             <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="3"
-                    android:layout_weight="3">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:weightSum="3">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:id="@+id/txtLumensMin"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_weight="1"
-                        android:textColor="#ffffff" />
+                <TextView
+                    android:id="@+id/txtLumensMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:id="@+id/txtLumensAvg"
-                        android:layout_weight="1"
-                        android:textColor="#ffffff" />
+                <TextView
+                    android:id="@+id/txtLumensAvg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtLumensMax"
-                        android:text="0"
-                        android:layout_weight="1"
-                        android:textColor="#ffffff" />
-                </TableRow>
+                <TextView
+                    android:id="@+id/txtLumensMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -81,79 +85,14 @@
                 android:layout_weight="1">
 
                 <Button
+                    android:id="@+id/btnResetLumens"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Reset"
-                    android:id="@+id/btnResetLumens"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:text="Reset" />
             </TableRow>
 
-            <!--<TableRow-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="6">-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="fill_parent"-->
-                        <!--android:text="0"-->
-                        <!--android:id="@+id/textView3"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:layout_alignTop="@+id/decibelMin"-->
-                        <!--android:layout_alignLeft="@+id/button"-->
-                        <!--android:layout_alignStart="@+id/button"-->
-                        <!--android:layout_weight="1" />-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="800"-->
-                        <!--android:id="@+id/decibelMin"-->
-                        <!--android:layout_marginLeft="31dp"-->
-                        <!--android:layout_marginStart="31dp"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:layout_alignTop="@+id/decibelAvg"-->
-                        <!--android:layout_alignLeft="@+id/button"-->
-                        <!--android:layout_alignStart="@+id/button"-->
-                        <!--android:layout_weight="1" />-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="1100"-->
-                        <!--android:id="@+id/decibelAvg"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:layout_alignLeft="@+id/textView2"-->
-                        <!--android:layout_alignStart="@+id/textView2"-->
-                        <!--android:layout_weight="1" />-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="1600"-->
-                        <!--android:id="@+id/decibelMax"-->
-                        <!--android:layout_toRightOf="@+id/textView2"-->
-                        <!--android:layout_toEndOf="@+id/textView2"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:layout_weight="1" />-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="2600"-->
-                        <!--android:id="@+id/textView4"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:layout_alignLeft="@+id/textView2"-->
-                        <!--android:layout_weight="1" />-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:id="@+id/editText2"-->
-                        <!--android:layout_weight="1" />-->
-                <!--</TableRow>-->
-
-            </TableLayout>
+        </TableLayout>
     </FrameLayout>
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -69,7 +70,9 @@ public class DecibelsActivity extends ActivityBaseClass {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        speedometer = (Speedometer) findViewById(R.id.Speedometer);
+        if (speedometer == null) {
+            speedometer = (Speedometer) findViewById(R.id.Speedometer);
+        }
 
         try {
             decibelAvg = (TextView) findViewById(R.id.decibelAvg);
@@ -112,7 +115,14 @@ public class DecibelsActivity extends ActivityBaseClass {
 
         decibelList.clear();
         decibelReader.start();
-        startRunner();
+
+        if (decibelReader.isRunning()) {
+            startRunner();
+        } else {
+            Toast.makeText(this,
+                    "Either your need to allow microphone permission or your device does not allow access to microphone!",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -126,15 +136,15 @@ public class DecibelsActivity extends ActivityBaseClass {
     void updateView() {
         //double currentReading =  decibelReader.getAmplitudeEMA();
 
-        double currentReading =  decibelReader.soundDb(Math.pow(10,-3));
+        double currentReading =  decibelReader.soundDb();
         String currentFormattedReading = String.format("%.2f", currentReading);
 
         decibelList.add(currentReading);
-        String avg = String.format("%.2f", getDecibelAvg());
+        String avg = String.format("Avg: %.2f", getDecibelAvg());
         decibelAvg.setText(avg);
-        String min = String.format("%.2f", getDecibelMin());
+        String min = String.format("Min: %.2f", getDecibelMin());
         decibelMin.setText(min);
-        String max = String.format("%.2f", getDecibelMax());
+        String max = String.format("Max: %.2f", getDecibelMax());
         decibelMax.setText(max);
 
         // Update the decibel graph.

@@ -65,25 +65,27 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-
+                android:layout_weight="3">
                 <Button
                     android:id="@+id/decibelResest"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="Reset" />
             </TableRow>
-
         </TableLayout>
 
         <com.example.cet191.soundstageapp.Speedometer
             android:id="@+id/Speedometer"
             android:layout_width="fill_parent"
-            android:layout_height="350dp"
+            android:layout_height="wrap_content"
             custom:maxSpeed="110"
-            custom:onLowColor="@color/white"
+            custom:lowColor="@color/green"
+            custom:midColor="@color/orange"
+            custom:lowMax="60"
+            custom:midMax="85"
+            custom:highColor="@color/red"
             custom:readingTextSize="16dp"
             custom:scaleTextSize="16dp"
             android:layout_gravity="left|bottom" />

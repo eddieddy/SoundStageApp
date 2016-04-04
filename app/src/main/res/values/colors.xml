@@ -8,4 +8,6 @@
     <color name="white">#ffffffff</color>
     <color name="red">#ffff0000</color>
     <color name="yellow">#fff3</color>
+    <color name="green">#80ff00</color>
+    <color name="orange">#ff8000</color>
 </resources>

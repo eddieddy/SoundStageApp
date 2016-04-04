@@ -3,7 +3,11 @@
     <declare-styleable name="Speedometer">
         <attr name="maxSpeed" format="float"></attr>
         <attr name="currentSpeed" format="float"></attr>
-        <attr name="onLowColor" format="color"></attr>
+        <attr name="lowColor" format="color"></attr>
+        <attr name="lowMax" format="float"></attr>
+        <attr name="midColor" format="color"></attr>
+        <attr name="midMax" format="float"></attr>
+        <attr name="highColor" format="color"></attr>
         <attr name="onColor" format="color"></attr>
         <attr name="offColor" format="color"></attr>
         <attr name="scaleColor" format="color"></attr>
