@@ -31,7 +31,9 @@ public class Speedometer extends View{
 	
 	// Drawing colors
 	private int ON_LOW_COLOR = Color.argb(255, 0xff, 0xA5, 0x00);
-	private int ON_COLOR = Color.argb(255, 0xff, 0xA5, 0x00);
+	private int ON_COLOR = Color.argb(255, 128, 255, 0);	//green
+	private int MID_COLOR = Color.argb(255, 255, 128, 0);	//orange
+	private int HIGH_COLOR = Color.argb(255, 255, 0, 0);	//red
 	private int OFF_COLOR = Color.argb(255, 0x3e, 0x3e, 0x3e);
 	private int SCALE_COLOR = Color.argb(255, 255, 255, 255);
 	private float SCALE_SIZE = 14f;
@@ -57,6 +59,8 @@ public class Speedometer extends View{
 			mCurrentSpeed = a.getFloat(R.styleable.Speedometer_currentSpeed, 0);
 			ON_LOW_COLOR = a.getColor(R.styleable.Speedometer_onColor, ON_LOW_COLOR);
 			ON_COLOR = a.getColor(R.styleable.Speedometer_onColor, ON_COLOR);
+			MID_COLOR = a.getColor(R.styleable.Speedometer_onColor, MID_COLOR);
+			HIGH_COLOR = a.getColor(R.styleable.Speedometer_onColor, HIGH_COLOR);
 			OFF_COLOR = a.getColor(R.styleable.Speedometer_offColor, OFF_COLOR);
 			SCALE_COLOR = a.getColor(R.styleable.Speedometer_scaleColor, SCALE_COLOR);
 			SCALE_SIZE = a.getDimension(R.styleable.Speedometer_scaleTextSize, SCALE_SIZE);
@@ -81,7 +85,7 @@ public class Speedometer extends View{
 		onMarkPaint.setStrokeWidth(MARK_WIDTH);
 		onMarkPaint.setShadowLayer(5f, 0f, 0f, ON_COLOR);
 		onMarkPaint.setAntiAlias(true);
-		
+
 		offMarkPaint = new Paint(onMarkPaint);
 		offMarkPaint.setColor(OFF_COLOR);
 		offMarkPaint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -116,6 +120,23 @@ public class Speedometer extends View{
 		else
 			this.mCurrentSpeed = mCurrentSpeed;
 
+
+		//Changes color on reading gauge based on value
+		if(mCurrentSpeed >= 0 && mCurrentSpeed < 50){
+			onMarkPaint.setColor(ON_COLOR);
+			onMarkPaint.setShadowLayer(5f, 0f, 0f, ON_COLOR);
+		}
+
+		if(mCurrentSpeed > 50 && mCurrentSpeed < 70){
+			onMarkPaint.setColor(MID_COLOR);
+			onMarkPaint.setShadowLayer(5f, 0f, 0f, MID_COLOR);
+		}
+
+		if(mCurrentSpeed > 70){
+			onMarkPaint.setColor(HIGH_COLOR);
+			onMarkPaint.setShadowLayer(5f, 0f, 0f, HIGH_COLOR);
+		}
+
         this.invalidate();
 	}
 	
@@ -123,14 +144,14 @@ public class Speedometer extends View{
 	protected void onSizeChanged(int width, int height, int oldw, int oldh) {
 		
 		// Setting up the oval area in which the arc will be drawn
-		if (width > height){
-			radius = height/4;
-		}else{
+		if (width > height) {
+			radius = height / 4;
+		} else{
 			radius = width/4;
 		}
-		oval.set(centerX - radius, 
-				centerY - radius, 
-				centerX + radius, 
+		oval.set(centerX - radius,
+				centerY - radius,
+				centerX + radius,
 				centerY + radius);
 	}
 	
@@ -166,7 +187,7 @@ public class Speedometer extends View{
 	private int getPreferredSize() {
 		return 300;
 	}
-	
+
 	@Override
 	public void onDraw(Canvas canvas){
 		drawScaleBackground(canvas);
@@ -208,7 +229,7 @@ public class Speedometer extends View{
 		canvas.rotate(-180, centerX,centerY);
 		Path circle = new Path();
 		double halfCircumference = radius * Math.PI;
-		double increments = 20;
+		double increments = 50;
 		for(int i = 0; i <= this.mMaxSpeed; i += increments){
 			circle.addCircle(centerX, centerY, radius, Path.Direction.CW);
 			canvas.drawTextOnPath(String.format("%d", i),

@@ -43,7 +43,6 @@
         android:src="@drawable/bs_round"
         android:layout_marginRight="94dp"
         android:layout_marginEnd="94dp"
-        android:layout_marginTop="50dp"
         android:layout_above="@+id/LumButton"
         android:layout_marginBottom="33dp"
         android:layout_alignRight="@+id/DecButton"
@@ -53,6 +52,7 @@
         android:layout_marginLeft="94dp"
         android:layout_marginStart="94dp"
         android:background="@android:color/transparent"
-        android:cropToPadding="true" />
+        android:cropToPadding="true"
+        android:layout_alignParentEnd="false" />
 
 </RelativeLayout>
