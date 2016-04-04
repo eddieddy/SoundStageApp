@@ -81,6 +81,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
                 @Override
                 public void onClick(View v) {
                     resetLightReadings();
+                    decibelList.clear();
                 }
             });
         }
