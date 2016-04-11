@@ -93,7 +93,7 @@ public class Speedometer extends View {
         offMarkPaint.setShadowLayer(0f, 0f, 0f, OFF_COLOR);
 
         scalePaint = new Paint(offMarkPaint);
-        scalePaint.setStrokeWidth(2f);
+        scalePaint.setStrokeWidth(2f);          //number text width
         scalePaint.setTextSize(SCALE_SIZE);
         scalePaint.setShadowLayer(5f, 0f, 0f, Color.RED);
         scalePaint.setColor(SCALE_COLOR);

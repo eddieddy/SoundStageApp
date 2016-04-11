@@ -112,8 +112,8 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         decibelResest.setVisibility(View.INVISIBLE);
 
         CustomScrollView myScrollView = (CustomScrollView) findViewById(R.id.myScroll);
-        myScrollView.setEnableScrolling(false); // disable scrolling
-        //myScrollView.setEnableScrolling(true); // enable scrolling
+        //myScrollView.setEnableScrolling(false); // disable scrolling
+        myScrollView.setEnableScrolling(true); // enable scrolling
     }
 
     private void startRunner() {
