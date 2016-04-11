@@ -12,11 +12,13 @@ import android.view.MenuItem;
  */
 public class ActivityBaseClass extends AppCompatActivity {
     DecibelReader decibelReader = new DecibelReader();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
+
     // Code added to add the menu.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -37,20 +39,14 @@ public class ActivityBaseClass extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.display_decibels) {
             Intent i = new Intent(this, DecibelsActivity.class);
-            decibelReader.stop();
             startActivity(i);
-        }
-        else if(id == R.id.display_lumens){
+        } else if (id == R.id.display_lumens) {
             Intent i = new Intent(this, LumensActivity.class);
             startActivity(i);
-        }
-       else if(id == R.id.display_lumensanddecibels){
+        } else if (id == R.id.display_lumensanddecibels) {
             Intent i = new Intent(this, LumensandDecibelsActivity.class);
-            decibelReader.stop();
             startActivity(i);
-        }
-        else if(id == R.id.display_main)
-        {
+        } else if (id == R.id.display_main) {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
         }

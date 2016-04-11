@@ -22,26 +22,25 @@ import java.util.List;
 
 
 public class DecibelsActivity extends ActivityBaseClass {
-    private List<Double> decibelList = new ArrayList<Double>();;
+    private List<Double> decibelList = new ArrayList<Double>();
+    ;
 
-    private Double getDecibelMin()
-    {
+    private Double getDecibelMin() {
         return Collections.min(decibelList);
     }
-    private Double getDecibelMax()
-    {
+
+    private Double getDecibelMax() {
         return Collections.max(decibelList);
     }
-    private Double getDecibelAvg()
-    {
+
+    private Double getDecibelAvg() {
         Double sum = 0d;
 
-        for(Double d : decibelList)
-        {
+        for (Double d : decibelList) {
             sum += d;
         }
 
-        return sum/decibelList.size();
+        return sum / decibelList.size();
     }
 
     Thread runner;
@@ -136,7 +135,7 @@ public class DecibelsActivity extends ActivityBaseClass {
     void updateView() {
         //double currentReading =  decibelReader.getAmplitudeEMA();
 
-        double currentReading =  decibelReader.soundDb();
+        double currentReading = decibelReader.soundDb();
         String currentFormattedReading = String.format("%.2f", currentReading);
 
         decibelList.add(currentReading);
@@ -148,7 +147,7 @@ public class DecibelsActivity extends ActivityBaseClass {
         decibelMax.setText(max);
 
         // Update the decibel graph.
-        speedometer.setCurrentSpeed((float)currentReading);
+        speedometer.setCurrentSpeed((float) currentReading);
 
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
@@ -166,6 +165,13 @@ public class DecibelsActivity extends ActivityBaseClass {
                 decibelList.clear();
             }
         });
+    }
 
+    // Code added to add the menu.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        decibelReader.stop();
+
+        return super.onOptionsItemSelected(item);
     }
 }
