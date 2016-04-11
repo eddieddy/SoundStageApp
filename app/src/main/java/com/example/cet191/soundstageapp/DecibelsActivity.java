@@ -26,6 +26,7 @@ public class DecibelsActivity extends ActivityBaseClass {
 
     private Double getDecibelMin()
     {
+
         return Collections.min(decibelList);
     }
     private Double getDecibelMax()
@@ -34,6 +35,7 @@ public class DecibelsActivity extends ActivityBaseClass {
     }
     private Double getDecibelAvg()
     {
+
         Double sum = 0d;
 
         for(Double d : decibelList)
@@ -82,7 +84,7 @@ public class DecibelsActivity extends ActivityBaseClass {
         } catch (Exception ex) {
             System.out.println(ex.getStackTrace());
         }
-
+        decibelList.clear();
         addListenerOnButton();
     }
 
@@ -102,6 +104,7 @@ public class DecibelsActivity extends ActivityBaseClass {
                 }
             };
             runner.start();
+
         }
     }
 

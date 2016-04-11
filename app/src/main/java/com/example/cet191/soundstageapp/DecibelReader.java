@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class DecibelReader {
     // This file is used to record voice
-    static final private double EMA_FILTER = 0.6;
+    static final private double EMA_FILTER = 0.4;
 
     private MediaRecorder mRecorder = null;
     private double mEMA = 0.0;
@@ -62,7 +62,7 @@ public class DecibelReader {
 
     public double soundDb(){
         double db =   20 * Math.log10(getAmplitudeEMA() / ampl);
-        if(db < 0)
+        if(db <0)
         {
             return 0;
         }
