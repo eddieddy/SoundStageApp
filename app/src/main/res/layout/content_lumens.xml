@@ -20,19 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.example.cet191.soundstageapp.Speedometer
-            android:id="@+id/Lumensmeter"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            custom:highColor="@color/red"
-            custom:lowColor="@color/green"
-            custom:lowMax="200"
-            custom:maxSpeed="600"
-            custom:midColor="@color/orange"
-            custom:midMax="400"
-            custom:readingTextSize="16dp"
-            custom:scaleTextSize="16dp" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="50dp"
@@ -43,7 +30,7 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="106dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom">
 
             <TableRow
@@ -93,6 +80,20 @@
             </TableRow>
 
         </TableLayout>
+
+        <com.example.cet191.soundstageapp.Speedometer
+            android:id="@+id/Lumensmeter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            custom:highColor="@color/red"
+            custom:lowColor="@color/green"
+            custom:lowMax="200"
+            custom:maxSpeed="600"
+            custom:midColor="@color/orange"
+            custom:midMax="400"
+            custom:readingTextSize="16dp"
+            custom:scaleTextSize="16dp"
+            android:layout_gravity="center" />
     </FrameLayout>
 
 </LinearLayout>

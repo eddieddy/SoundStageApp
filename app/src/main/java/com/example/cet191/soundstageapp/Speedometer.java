@@ -141,9 +141,9 @@ public class Speedometer extends View {
 
         // Setting up the oval area in which the arc will be drawn
         if (width > height) {
-            radius = height / 4;
+            radius = height / 3;  //used to be 4
         } else {
-            radius = width / 4;
+            radius = width / 3;
         }
         oval.set(centerX - radius,
                 centerY - radius,
@@ -165,9 +165,12 @@ public class Speedometer extends View {
         int chosenWidth = chooseDimension(widthMode, widthSize);
         int chosenHeight = chooseDimension(heightMode, heightSize);
 
-        int chosenDimension = Math.min(chosenWidth, chosenHeight);
+        int chosenDimension = Math.min(chosenWidth, chosenHeight); //derek HERE!!!!
+        double number;
         centerX = chosenDimension / 2;
-        centerY = chosenDimension / 2;
+        centerY = chosenDimension;
+        centerY /= 1.4;
+
         setMeasuredDimension(chosenDimension, chosenDimension);
     }
 
@@ -247,7 +250,7 @@ public class Speedometer extends View {
         float advance = 0;
         for (double width : widths)
             advance += width;
-        path.moveTo(centerX - advance / 2, centerY);
+        path.moveTo(centerX - advance / 2, centerY);  //here too Derek!
         path.lineTo(centerX + advance / 2, centerY);
         canvas.drawTextOnPath(message, path, 0f, 0f, readingPaint);
     }
