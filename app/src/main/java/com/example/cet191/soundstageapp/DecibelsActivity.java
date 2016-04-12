@@ -23,7 +23,7 @@ import java.util.List;
 
 public class DecibelsActivity extends ActivityBaseClass {
     private List<Double> decibelList = new ArrayList<Double>();
-    ;
+
 
     private Double getDecibelMin() {
         return Collections.min(decibelList);
@@ -123,7 +123,7 @@ public class DecibelsActivity extends ActivityBaseClass {
                     Toast.LENGTH_LONG).show();
         }
     }
-
+/*
     @Override
     protected void onStop() {
         super.onStop();
@@ -131,7 +131,7 @@ public class DecibelsActivity extends ActivityBaseClass {
         stopRunner();
         decibelReader.stop();
     }
-
+*/
     void updateView() {
         //double currentReading =  decibelReader.getAmplitudeEMA();
 

@@ -153,7 +153,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
                     Toast.LENGTH_LONG).show();
         }
     }
-
+/*
     @Override
     protected void onStop() {
         super.onStop();
@@ -161,7 +161,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         stopRunner();
         decibelReader.stop();
     }
-
+*/
     void updateView() {
         //double currentReading = decibelReader.getAmplitudeEMA();
 
