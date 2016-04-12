@@ -6,6 +6,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+
 public class MainActivity extends ActivityBaseClass {
 //hello
     //
@@ -18,6 +22,10 @@ public class MainActivity extends ActivityBaseClass {
         setSupportActionBar(toolbar);
 
         addListenerOnButton();
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     public void addListenerOnButton() {

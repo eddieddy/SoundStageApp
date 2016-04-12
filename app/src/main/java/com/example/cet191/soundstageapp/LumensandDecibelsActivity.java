@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -111,8 +112,8 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         decibelResest.setVisibility(View.INVISIBLE);
 
         CustomScrollView myScrollView = (CustomScrollView) findViewById(R.id.myScroll);
-        myScrollView.setEnableScrolling(false); // disable scrolling
-        //myScrollView.setEnableScrolling(true); // enable scrolling
+        //myScrollView.setEnableScrolling(false); // disable scrolling
+        myScrollView.setEnableScrolling(true); // enable scrolling
     }
 
     private void startRunner() {
@@ -165,7 +166,7 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         //double currentReading = decibelReader.getAmplitudeEMA();
 
 
-        double currentReading =  decibelReader.soundDb();
+        double currentReading = decibelReader.soundDb();
         String currentFormattedReading = String.format("%.2f", currentReading);
 
         decibelList.add(currentReading);
@@ -182,5 +183,13 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
         }
+    }
+
+    // Code added to add the menu.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        decibelReader.stop();
+
+        return super.onOptionsItemSelected(item);
     }
 }

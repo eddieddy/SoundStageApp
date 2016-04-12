@@ -32,4 +32,6 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.cardiomood.android:android-widgets:0.1.1'
+    compile 'com.google.android.gms:play-services-ads:8.1.0'
+
 }
