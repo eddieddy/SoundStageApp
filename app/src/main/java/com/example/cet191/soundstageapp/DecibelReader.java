@@ -55,6 +55,7 @@ public class DecibelReader {
     public void stop() {
         if (mRecorder != null) {
             mRecorder.stop();
+            mRecorder.reset();
             mRecorder.release();
             mRecorder = null;
         }

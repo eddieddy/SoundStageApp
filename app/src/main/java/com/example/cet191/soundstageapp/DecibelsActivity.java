@@ -87,25 +87,35 @@ public class DecibelsActivity extends ActivityBaseClass {
 
     private void startRunner() {
         runRunner = true;
-        if (runner == null) {
-            runner = new Thread() {
-                public void run() {
-                    while (runner != null && runRunner) {
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                        }
-                        ;
-                        mHandler.post(updater);
+
+        runner = new Thread() {
+            public void run() {
+                while (runner != null && runRunner) {
+                    try {
+                        Thread.sleep(250);
+                    } catch (InterruptedException e) {
                     }
+
+                    mHandler.post(updater);
                 }
-            };
-            runner.start();
-        }
+            }
+        };
+
+        runner.start();
     }
 
     private void stopRunner() {
         runRunner = false;
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+        }
+        try {
+            runner.join();
+            runner = null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -123,7 +133,7 @@ public class DecibelsActivity extends ActivityBaseClass {
                     Toast.LENGTH_LONG).show();
         }
     }
-/*
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -131,7 +141,7 @@ public class DecibelsActivity extends ActivityBaseClass {
         stopRunner();
         decibelReader.stop();
     }
-*/
+
     void updateView() {
         //double currentReading =  decibelReader.getAmplitudeEMA();
 
