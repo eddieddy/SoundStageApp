@@ -23,6 +23,7 @@ public class MainActivity extends ActivityBaseClass {
 
         addListenerOnButton();
 
+        //AdView code puts the ad in
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
