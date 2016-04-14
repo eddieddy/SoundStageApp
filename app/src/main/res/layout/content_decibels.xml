@@ -29,53 +29,6 @@
             android:contentDescription="@string/speaker"
             android:adjustViewBounds="false" />
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3">
-
-                <TextView
-                    android:id="@+id/decibelMin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff" />
-
-                <TextView
-                    android:id="@+id/decibelAvg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff" />
-
-                <TextView
-                    android:id="@+id/decibelMax"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3">
-                <Button
-                    android:id="@+id/decibelResest"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="Reset" />
-            </TableRow>
-        </TableLayout>
-
         <com.example.cet191.soundstageapp.Speedometer
             android:id="@+id/Speedometer"
             android:layout_width="fill_parent"
@@ -88,7 +41,55 @@
             custom:highColor="@color/red"
             custom:readingTextSize="16dp"
             custom:scaleTextSize="16dp"
-            android:layout_gravity="left|bottom" />
+            android:layout_gravity="center_horizontal" />
+
     </FrameLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <TextView
+                android:id="@+id/decibelMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/decibelAvg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/decibelMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+            <Button
+                android:id="@+id/decibelResest"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Reset" />
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>
