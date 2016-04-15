@@ -23,11 +23,12 @@
         <include
             layout="@layout/content_decibels"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/activity_vertical_margin"
+            android:layout_height="400dp"
+            android:paddingTop="20dp"
             android:layout_x="1dp"
             android:layout_y="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginTop="34dp" />
 
         <include
             layout="@layout/content_lumens"
