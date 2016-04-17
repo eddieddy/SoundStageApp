@@ -1,42 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.cet191.soundstageapp.CustomScrollView xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/myScroll"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="50dp"
     android:textColor="@color/white"
     tools:context="com.example.cet191.soundstageapp.LumensandDecibelsActivity"
     tools:showIn="@layout/activity_lumensand_decibels"
-    android:nestedScrollingEnabled="false">
+    android:nestedScrollingEnabled="false"
+    android:fillViewport="false"
+    android:baselineAligned="false">
 
-    <LinearLayout
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageView2"
+            android:layout_gravity="center_horizontal|top"
+            android:src="@drawable/speaker_rounded"
+            android:contentDescription="@string/speaker"
+            android:adjustViewBounds="false" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:weightSum="3"
+                android:layout_marginBottom="50dp">
+
+            <TextView
+                android:id="@+id/decibelMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/decibelAvg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/decibelMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff" />
+
+            </TableRow>
+
+        </TableLayout>
+
+
+        <com.example.cet191.soundstageapp.Speedometer
+            android:id="@+id/Speedometer"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            custom:maxSpeed="110"
+            custom:lowColor="@color/green"
+            custom:midColor="@color/orange"
+            custom:lowMax="60"
+            custom:midMax="85"
+            custom:highColor="@color/red"
+            custom:readingTextSize="16dp"
+            custom:scaleTextSize="16dp"
+            android:layout_gravity="center_horizontal|bottom" />
+
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="match_parent">
 
-        <include
-            layout="@layout/content_decibels"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|top"
+            android:contentDescription="@string/bulb"
+            android:src="@drawable/bulb_rounded" />
+
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:paddingTop="20dp"
-            android:layout_x="1dp"
-            android:layout_y="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="34dp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom">
 
-        <include
-            layout="@layout/content_lumens"
-            android:layout_width="match_parent"
-            android:layout_x="1dp"
-            android:layout_height="400dp"
-            android:layout_y="220dp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:weightSum="3">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/txtLumensMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
 
-</com.example.cet191.soundstageapp.CustomScrollView>
+                <TextView
+                    android:id="@+id/txtLumensAvg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:id="@+id/txtLumensMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btnResetLumens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reset" />
+            </TableRow>
+
+        </TableLayout>
+
+        <com.example.cet191.soundstageapp.Speedometer
+            android:id="@+id/Lumensmeter"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            custom:highColor="@color/red"
+            custom:lowColor="@color/green"
+            custom:lowMax="200"
+            custom:maxSpeed="600"
+            custom:midColor="@color/orange"
+            custom:midMax="400"
+            custom:readingTextSize="16dp"
+            custom:scaleTextSize="16dp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+</LinearLayout>
+
+<!--<com.example.cet191.soundstageapp.CustomScrollView-->
+    <!--android:id="@+id/myScroll"-->

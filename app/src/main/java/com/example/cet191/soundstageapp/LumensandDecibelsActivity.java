@@ -107,13 +107,13 @@ public class LumensandDecibelsActivity extends LumensActivityBase {
         } catch (Exception ex) {
             System.out.println(ex.getStackTrace());
         }
-
+/*
         Button decibelResest = (Button) findViewById(R.id.decibelResest);
-        decibelResest.setVisibility(View.INVISIBLE);
+        decibelResest.setVisibility(View.INVISIBLE);*/
 
-        CustomScrollView myScrollView = (CustomScrollView) findViewById(R.id.myScroll);
+/*        CustomScrollView myScrollView = (CustomScrollView) findViewById(R.id.myScroll);
         //myScrollView.setEnableScrolling(false); // disable scrolling
-        myScrollView.setEnableScrolling(true); // enable scrolling
+        myScrollView.setEnableScrolling(true); // enable scrolling*/
     }
 
     private void startRunner() {

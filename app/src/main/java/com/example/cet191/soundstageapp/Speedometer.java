@@ -142,8 +142,10 @@ public class Speedometer extends View {
         // Setting up the oval area in which the arc will be drawn
         if (width > height) {
             radius = height / 3;  //used to be 4
+            radius *= 1.1;
         } else {
             radius = width / 3;
+            radius *= 1.1;
         }
         oval.set(centerX - radius,
                 centerY - radius,
