@@ -139,14 +139,25 @@ public class LumensActivityBase extends ActivityBaseClass {
                 String maxValue = Integer.toString(getMaxLightReading());
                 max.setText(String.format("Max: %s", minValue));
 
+                float getCurrentMaxSize = lumensmeter.getMaxSize();
+                if(currentReading > getCurrentMaxSize || currentReading/2 < getCurrentMaxSize)
+                {
+                    lumensmeter.setMaxSize(650);
+                }
+
                 // Update the lumens graph.
                 lumensmeter.setCurrentSpeed(currentReading);
                 if (BuildConfig.DEBUG) {
-                    Log.d(getLocalClassName(), String.format("Light readings: current: %s, min: %s, max: %s, avg: %s", currentReading, minValue, maxValue, avgValue));
+//                    Log.d(getLocalClassName(), String.format("Light readings: current: %s, min: %s, max: %s, avg: %s", currentReading, minValue, maxValue, avgValue));
                 }
             }
         }
     };
+
+    private float calculateMaxSize(float currentReading, float maxReading)
+    {
+        return 650;
+    }
 
     @Override
     protected void onStart() {

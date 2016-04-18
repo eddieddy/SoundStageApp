@@ -50,6 +50,14 @@ public class Speedometer extends View {
         super(context);
     }
 
+    public float getMaxSize() {
+        return this.mMaxSpeed;
+    }
+
+    public void setMaxSize(float size) {
+        this.mMaxSpeed = size;
+    }
+
     public Speedometer(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs,

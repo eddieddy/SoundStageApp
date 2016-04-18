@@ -24,13 +24,13 @@ public class MainActivity extends ActivityBaseClass {
         addListenerOnButton();
 
         //AdView code puts the ad in
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        mAdView.setEnabled(true);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("Device_ID").build();
-
-                mAdView.loadAd(adRequest);
+//        AdView mAdView = (AdView) findViewById(R.id.adView);
+//        mAdView.setEnabled(true);
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//                .addTestDevice("Device_ID").build();
+//
+//                mAdView.loadAd(adRequest);
     }
 
     public void addListenerOnButton() {
