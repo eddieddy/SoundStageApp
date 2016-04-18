@@ -26,7 +26,8 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal|top"
             android:contentDescription="@string/bulb"
-            android:src="@drawable/bulb_rounded" />
+            android:src="@drawable/bulb_rounded"
+            android:layout_marginTop="15dp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -37,7 +38,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:weightSum="3">
+                android:weightSum="3"
+                android:layout_marginBottom="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp">
 
                 <TextView
                     android:id="@+id/txtLumensMin"
@@ -93,7 +97,8 @@
             custom:midMax="400"
             custom:readingTextSize="16dp"
             custom:scaleTextSize="16dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp" />
     </FrameLayout>
 
 </LinearLayout>

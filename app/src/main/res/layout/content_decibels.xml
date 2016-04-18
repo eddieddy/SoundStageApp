@@ -27,7 +27,8 @@
             android:layout_gravity="center_horizontal|top"
             android:src="@drawable/speaker_rounded"
             android:contentDescription="@string/speaker"
-            android:adjustViewBounds="false" />
+            android:adjustViewBounds="false"
+            android:layout_marginTop="15dp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -38,7 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:weightSum="3">
+            android:weightSum="3"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="25dp">
 
             <TextView
                 android:id="@+id/decibelMin"
@@ -90,7 +93,9 @@
             custom:highColor="@color/red"
             custom:readingTextSize="16dp"
             custom:scaleTextSize="16dp"
-            android:layout_gravity="center_horizontal|bottom" />
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="-5dp" />
 
     </FrameLayout>
 

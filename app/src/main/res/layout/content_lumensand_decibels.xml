@@ -20,7 +20,8 @@
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:layout_width="50dp"
@@ -41,28 +42,33 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:weightSum="3"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="35dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp">
 
             <TextView
                 android:id="@+id/decibelMin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_gravity="center" />
 
             <TextView
                 android:id="@+id/decibelAvg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_gravity="center" />
 
             <TextView
                 android:id="@+id/decibelMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_gravity="center" />
 
             </TableRow>
 
@@ -81,13 +87,15 @@
             custom:highColor="@color/red"
             custom:readingTextSize="16dp"
             custom:scaleTextSize="16dp"
-            android:layout_gravity="center_horizontal|bottom" />
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginTop="-5dp" />
 
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="-40dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -95,7 +103,8 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal|top"
             android:contentDescription="@string/bulb"
-            android:src="@drawable/bulb_rounded" />
+            android:src="@drawable/bulb_rounded"
+            android:layout_marginTop="30dp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -106,7 +115,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:weightSum="3">
+                android:weightSum="3"
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="20dp">
 
                 <TextView
                     android:id="@+id/txtLumensMin"
@@ -162,7 +173,8 @@
             custom:midMax="400"
             custom:readingTextSize="16dp"
             custom:scaleTextSize="16dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp" />
     </FrameLayout>
 
 </LinearLayout>
