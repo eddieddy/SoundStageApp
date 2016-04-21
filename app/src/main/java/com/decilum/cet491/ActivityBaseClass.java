@@ -1,11 +1,12 @@
-package com.example.cet191.soundstageapp;
+package com.decilum.cet491;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.decilum.cet491.R;
 
 /**
  * Created by Eddie on 2/9/2016.

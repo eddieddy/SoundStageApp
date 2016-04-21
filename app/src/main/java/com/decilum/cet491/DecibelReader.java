@@ -1,4 +1,4 @@
-package com.example.cet191.soundstageapp;
+package com.decilum.cet491;
 
 import android.media.MediaRecorder;
 

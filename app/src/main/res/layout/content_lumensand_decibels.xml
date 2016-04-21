@@ -12,7 +12,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="50dp"
     android:textColor="@color/white"
-    tools:context="com.example.cet191.soundstageapp.LumensandDecibelsActivity"
+    tools:context="com.decilum.cet491.LumensandDecibelsActivity"
     tools:showIn="@layout/activity_lumensand_decibels"
     android:nestedScrollingEnabled="false"
     android:fillViewport="false"
@@ -75,7 +75,7 @@
         </TableLayout>
 
 
-        <com.example.cet191.soundstageapp.Speedometer
+        <com.decilum.cet491.Speedometer
             android:id="@+id/Speedometer"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -161,7 +161,7 @@
 
         </TableLayout>
 
-        <com.example.cet191.soundstageapp.Speedometer
+        <com.decilum.cet491.Speedometer
             android:id="@+id/Lumensmeter"
             android:layout_width="fill_parent"
             android:layout_height="250dp"
@@ -179,5 +179,5 @@
 
 </LinearLayout>
 
-<!--<com.example.cet191.soundstageapp.CustomScrollView-->
+<!--<com.decilum.cet491.CustomScrollView-->
     <!--android:id="@+id/myScroll"-->

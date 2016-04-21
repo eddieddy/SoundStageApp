@@ -13,7 +13,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:textColor="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.cet191.soundstageapp.DecibelsActivity"
+    tools:context="com.decilum.cet491.DecibelsActivity"
     tools:showIn="@layout/activity_decibels">
 
     <FrameLayout
@@ -81,7 +81,7 @@
         </TableLayout>
 
 
-        <com.example.cet191.soundstageapp.Speedometer
+        <com.decilum.cet491.Speedometer
             android:id="@+id/Speedometer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

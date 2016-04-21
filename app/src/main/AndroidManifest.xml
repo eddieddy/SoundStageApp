@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cet191.soundstageapp">
+    package="com.decilum.cet491">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.permission.BODY_SENSOR" />
     <uses-feature android:name="android.hardware.sensor.light" />
 
     <application
@@ -17,7 +13,7 @@
         android:supportsRtl="true"
                 android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.decilum.cet491.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation"
@@ -29,17 +25,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DecibelsActivity"
+            android:name="com.decilum.cet491.DecibelsActivity"
             android:label="@string/title_activity_decibels"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LumensActivity"
+            android:name="com.decilum.cet491.LumensActivity"
             android:label="@string/title_activity_lumens"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LumensandDecibelsActivity"
+            android:name="com.decilum.cet491.LumensandDecibelsActivity"
             android:label="@string/title_activity_lumensand_decibels"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -50,9 +46,9 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:value="@string/banner_ad_unit_id"
-            android:name="ADMOB_PUBLISHER_ID" />
+        <!--<meta-data-->
+            <!--android:value="@string/banner_ad_unit_id"-->
+            <!--android:name="ADMOB_PUBLISHER_ID" />-->
     </application>
 
 </manifest>

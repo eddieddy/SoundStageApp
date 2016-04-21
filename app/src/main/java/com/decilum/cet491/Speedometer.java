@@ -1,4 +1,4 @@
-package com.example.cet191.soundstageapp;
+package com.decilum.cet491;
 
 import android.content.Context;
 import android.content.res.TypedArray;

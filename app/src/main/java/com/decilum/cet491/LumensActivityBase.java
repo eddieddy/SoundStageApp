@@ -1,19 +1,11 @@
-package com.example.cet191.soundstageapp;
+package com.decilum.cet491;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,13 +34,16 @@ public class LumensActivityBase extends ActivityBaseClass {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    private float lumensMeterMinSize = 650;
 
     protected List<Integer> getLightReadings() {
         return _lightReadings;
     }
 
     protected void resetLightReadings() {
+
         _lightReadings.clear();
+        lumensmeter.setMaxSize(lumensMeterMinSize);
     }
 
     protected int getMaxLightReading() {
@@ -78,7 +73,7 @@ public class LumensActivityBase extends ActivityBaseClass {
         _lightReadings = new ArrayList<Integer>();
 
         sensorManager
-                = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+                = (SensorManager) getSystemService(SENSOR_SERVICE);
         lightSensor
                 = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
@@ -140,9 +135,9 @@ public class LumensActivityBase extends ActivityBaseClass {
                 max.setText(String.format("Max: %s", minValue));
 
                 float getCurrentMaxSize = lumensmeter.getMaxSize();
-                if(currentReading > getCurrentMaxSize || currentReading/2 < getCurrentMaxSize)
+                if(currentReading > getCurrentMaxSize || currentReading/4 < getCurrentMaxSize)
                 {
-                    lumensmeter.setMaxSize(650);
+                    calculateMaxSize(currentReading);
                 }
 
                 // Update the lumens graph.
@@ -154,9 +149,30 @@ public class LumensActivityBase extends ActivityBaseClass {
         }
     };
 
-    private float calculateMaxSize(float currentReading, float maxReading)
+    private void calculateMaxSize(float currentReading)
     {
-        return 650;
+        if(currentReading < lumensMeterMinSize)
+            lumensmeter.setMaxSize(lumensMeterMinSize);
+        else if(currentReading < 10000)
+            lumensmeter.setMaxSize(10000);
+        else if(currentReading < 20000)
+            lumensmeter.setMaxSize(20000);
+        else if(currentReading < 30000)
+            lumensmeter.setMaxSize(30000);
+        else if(currentReading < 40000)
+            lumensmeter.setMaxSize(40000);
+        else if(currentReading < 50000)
+            lumensmeter.setMaxSize(500000);
+        else if(currentReading < 60000)
+            lumensmeter.setMaxSize(60000);
+        else if(currentReading < 70000)
+            lumensmeter.setMaxSize(70000);
+        else if(currentReading < 80000)
+            lumensmeter.setMaxSize(80000);
+        else if(currentReading < 90000)
+            lumensmeter.setMaxSize(90000);
+        else if(currentReading < 100000)
+            lumensmeter.setMaxSize(100000);
     }
 
     @Override
@@ -164,42 +180,12 @@ public class LumensActivityBase extends ActivityBaseClass {
         super.onStart();
 
         startLightSensorReading();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "LumensActivityBase Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.cet191.soundstageapp/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
+   }
 
     @Override
     protected void onStop() {
         super.onStop();
 
         stopLightSensor();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "LumensActivityBase Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.cet191.soundstageapp/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 }

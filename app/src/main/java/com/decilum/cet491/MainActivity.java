@@ -1,13 +1,10 @@
-package com.example.cet191.soundstageapp;
+package com.decilum.cet491;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 
 public class MainActivity extends ActivityBaseClass {

@@ -1,29 +1,32 @@
-package com.example.cet191.soundstageapp;
+package com.decilum.cet491;
 
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
-import android.util.Config;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+public class LumensandDecibelsActivity extends LumensActivityBase {
 
-public class DecibelsActivity extends ActivityBaseClass {
+    Thread runner;
+    boolean runRunner;
+    TextView decibelAvg;
+    TextView decibelMin;
+    TextView decibelMax;
+    Speedometer speedometer;
+    Button btnResetLumens;
+    private static final String TAG = "LumensandDecibelsActivity";
+
     private List<Double> decibelList = new ArrayList<Double>();
-
 
     private Double getDecibelMin() {
         return Collections.min(decibelList);
@@ -43,15 +46,6 @@ public class DecibelsActivity extends ActivityBaseClass {
         return sum / decibelList.size();
     }
 
-    Thread runner;
-    boolean runRunner;
-    DecibelReader decibelReader = new DecibelReader();
-    TextView decibelAvg;
-    TextView decibelMin;
-    TextView decibelMax;
-    Speedometer speedometer;
-    private static final String TAG = "DecibelsActivity";
-
     final Runnable updater = new Runnable() {
         public void run() {
             updateView();
@@ -60,29 +54,61 @@ public class DecibelsActivity extends ActivityBaseClass {
 
     final Handler mHandler = new Handler();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_decibels);
+        setContentView(R.layout.activity_lumensand_decibels);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (min == null)
+            min = (TextView) findViewById(R.id.txtLumensMin);
+        if (max == null)
+            max = (TextView) findViewById(R.id.txtLumensMax);
+        if (avg == null)
+            avg = (TextView) findViewById(R.id.txtLumensAvg);
 
-        if (speedometer == null) {
-            speedometer = (Speedometer) findViewById(R.id.Speedometer);
+        if (btnResetLumens == null) {
+            btnResetLumens = (Button) findViewById(R.id.btnResetLumens);
+
+            btnResetLumens.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    resetLightReadings();
+                    decibelList.clear();
+                }
+            });
         }
 
         try {
-            decibelAvg = (TextView) findViewById(R.id.decibelAvg);
-            decibelMax = (TextView) findViewById(R.id.decibelMax);
-            decibelMin = (TextView) findViewById(R.id.decibelMin);
+            if (decibelAvg == null)
+                decibelAvg = (TextView) findViewById(R.id.decibelAvg);
+            if (decibelMax == null)
+                decibelMax = (TextView) findViewById(R.id.decibelMax);
+            if (decibelMin == null)
+                decibelMin = (TextView) findViewById(R.id.decibelMin);
+
+            // Instantiate our graph for decibels.
+            if (speedometer == null) {
+                speedometer = (Speedometer) findViewById(R.id.Speedometer);
+            }
+
+            if (lumensmeter == null) {
+                lumensmeter = (Speedometer) findViewById(R.id.Lumensmeter);
+            }
 
         } catch (Exception ex) {
             System.out.println(ex.getStackTrace());
         }
+/*
+        Button decibelResest = (Button) findViewById(R.id.decibelResest);
+        decibelResest.setVisibility(View.INVISIBLE);*/
 
-        addListenerOnButton();
+/*        CustomScrollView myScrollView = (CustomScrollView) findViewById(R.id.myScroll);
+        //myScrollView.setEnableScrolling(false); // disable scrolling
+        myScrollView.setEnableScrolling(true); // enable scrolling*/
     }
 
     private void startRunner() {
@@ -124,7 +150,6 @@ public class DecibelsActivity extends ActivityBaseClass {
 
         decibelList.clear();
         decibelReader.start();
-
         if (decibelReader.isRunning()) {
             startRunner();
         } else {
@@ -143,7 +168,8 @@ public class DecibelsActivity extends ActivityBaseClass {
     }
 
     void updateView() {
-        //double currentReading =  decibelReader.getAmplitudeEMA();
+        //double currentReading = decibelReader.getAmplitudeEMA();
+
 
         double currentReading = decibelReader.soundDb();
         String currentFormattedReading = String.format("%.2f", currentReading);
@@ -162,19 +188,6 @@ public class DecibelsActivity extends ActivityBaseClass {
         if (BuildConfig.DEBUG) {
             Log.d(getLocalClassName(), String.format("Decibel readings: current: %s, min: %s, max: %s, avg: %s", currentFormattedReading, min, max, avg));
         }
-
-    }
-
-    public void addListenerOnButton() {
-
-        Button decibelResest = (Button) findViewById(R.id.decibelResest);
-
-        decibelResest.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                decibelList.clear();
-            }
-        });
     }
 
     // Code added to add the menu.

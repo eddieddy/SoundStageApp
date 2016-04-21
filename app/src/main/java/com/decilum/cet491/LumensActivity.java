@@ -1,4 +1,4 @@
-package com.example.cet191.soundstageapp;
+package com.decilum.cet491;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;

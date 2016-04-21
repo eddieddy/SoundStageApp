@@ -1,4 +1,4 @@
-package com.example.cet191.soundstageapp;
+package com.decilum.cet491;
 
 /**
  * Created by Eddie  on 3/5/2016.
