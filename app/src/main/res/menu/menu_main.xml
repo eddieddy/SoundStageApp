@@ -1,10 +1,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.cet191.soundstageapp.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/display_main"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/title_activity_main"
+        android:icon="@drawable/main"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/display_decibels"
+        android:orderInCategory="100"
+        android:title="@string/title_activity_decibels"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/display_lumens"
+        android:orderInCategory="100"
+        android:title="Lumens"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/display_lumensanddecibels"
+        android:orderInCategory="100"
+        android:title="Lumens and Decibels"
+        app:showAsAction="collapseActionView" />
 </menu>

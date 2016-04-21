@@ -1,4 +1,12 @@
 <resources>
-    <string name="app_name">SoundStageApp</string>
+    <string name="app_name">Decibel Lux Meter</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_main">Home</string>
+    <string name="title_activity_decibels">Decibels</string>
+    <string name="title_activity_lumens">Lumens</string>
+    <string name="title_activity_lumensand_decibels">Lumens and Decibels</string>
+    <string name="title_activity_decibel_graph">decibelGraph</string>
+    <string name="speaker">speaker</string>
+    <string name="bulb">bulb</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

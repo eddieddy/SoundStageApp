@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.decilum.cet491.MainActivity">
+    tools:context="com.decilum.cet491.LumensActivity"
+    tools:showIn="@layout/content_lumens">
+
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,18 +23,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--ad stuff here-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:orientation="vertical" >
+    <include layout="@layout/content_lumens" />
 
-    </LinearLayout>
-
-    <include layout="@layout/content_main" />
-
-
-
-</android.support.design.widget.CoordinatorLayout>
+  </android.support.design.widget.CoordinatorLayout>

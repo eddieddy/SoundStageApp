@@ -2,18 +2,81 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.cet191.soundstageapp.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.decilum.cet491.MainActivity">
 
-    <TextView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World" />
+        android:id="@+id/imgBtnLumAndDec"
+        android:src="@drawable/bs_round"
+        android:background="@android:color/transparent"
+        android:cropToPadding="false"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitCenter"
+        android:padding="10dp"
+        android:layout_marginRight="87dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="206dp"
+        android:layout_alignBottom="@+id/LumButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="68dp"
+        android:layout_marginStart="68dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/LumButton"
+        android:src="@drawable/bulb_rounded"
+        android:layout_alignWithParentIfMissing="false"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="94dp"
+        android:layout_marginEnd="94dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="183dp"
+        android:layout_alignRight="@+id/imgBtnLumAndDec"
+        android:layout_alignEnd="@+id/imgBtnLumAndDec"
+        android:layout_marginBottom="65dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/DecButton"
+        android:src="@drawable/speaker_rounded"
+        android:background="@android:color/transparent"
+        android:adjustViewBounds="false"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginBottom="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="186dp"
+        android:layout_alignLeft="@+id/imgBtnLumAndDec"
+        android:layout_alignStart="@+id/imgBtnLumAndDec" />
+
+
+    <!--<com.google.android.gms.ads.AdView-->
+        <!--android:id="@+id/adView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--ads:adSize="BANNER"-->
+        <!--ads:adUnitId="@string/banner_ad_unit_id"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentLeft="false"-->
+        <!--android:layout_alignParentStart="false">-->
+    <!--</com.google.android.gms.ads.AdView>-->
 </RelativeLayout>

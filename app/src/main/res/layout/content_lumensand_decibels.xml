@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="50dp"
+    android:textColor="@color/white"
+    tools:context="com.decilum.cet491.LumensandDecibelsActivity"
+    tools:showIn="@layout/activity_lumensand_decibels"
+    android:nestedScrollingEnabled="false"
+    android:fillViewport="false"
+    android:baselineAligned="false">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageView2"
+            android:layout_gravity="center_horizontal|top"
+            android:src="@drawable/speaker_rounded"
+            android:contentDescription="@string/speaker"
+            android:adjustViewBounds="false" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:weightSum="3"
+                android:layout_marginBottom="35dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp">
+
+            <TextView
+                android:id="@+id/decibelMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/decibelAvg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/decibelMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_gravity="center" />
+
+            </TableRow>
+
+        </TableLayout>
+
+
+        <com.decilum.cet491.Speedometer
+            android:id="@+id/Speedometer"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            custom:maxSpeed="110"
+            custom:lowColor="@color/green"
+            custom:midColor="@color/orange"
+            custom:lowMax="60"
+            custom:midMax="85"
+            custom:highColor="@color/red"
+            custom:readingTextSize="16dp"
+            custom:scaleTextSize="16dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginTop="-5dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-40dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|top"
+            android:contentDescription="@string/bulb"
+            android:src="@drawable/bulb_rounded"
+            android:layout_marginTop="30dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:weightSum="3"
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="20dp">
+
+                <TextView
+                    android:id="@+id/txtLumensMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:id="@+id/txtLumensAvg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:id="@+id/txtLumensMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="#ffffff" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btnResetLumens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reset" />
+            </TableRow>
+
+        </TableLayout>
+
+        <com.decilum.cet491.Speedometer
+            android:id="@+id/Lumensmeter"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            custom:highColor="@color/red"
+            custom:lowColor="@color/green"
+            custom:lowMax="200"
+            custom:maxSpeed="600"
+            custom:midColor="@color/orange"
+            custom:midMax="400"
+            custom:readingTextSize="16dp"
+            custom:scaleTextSize="16dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp" />
+    </FrameLayout>
+
+</LinearLayout>
+
+<!--<com.decilum.cet491.CustomScrollView-->
+    <!--android:id="@+id/myScroll"-->
